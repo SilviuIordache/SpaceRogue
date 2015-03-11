@@ -6,22 +6,30 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\spr_player2</sprite>
-    <sprite>sprites\spr_block</sprite>
-    <sprite>sprites\spr_blockTriangle</sprite>
-    <sprite>sprites\spr_player</sprite>
-    <sprite>sprites\spr_door</sprite>
-    <sprite>sprites\spr_StartButton</sprite>
-    <sprite>sprites\spr_playerShadow</sprite>
-    <sprite>sprites\spr_boxTop</sprite>
-    <sprite>sprites\spr_rifle</sprite>
-    <sprite>sprites\spr_RPG</sprite>
-    <sprite>sprites\spr_shotgun</sprite>
-    <sprite>sprites\spr_pistol</sprite>
-    <sprite>sprites\spr_RPG_Bullet</sprite>
-    <sprite>sprites\spr_shotgunBullet</sprite>
-    <sprite>sprites\spr_pistolBullet</sprite>
-    <sprite>sprites\spr_rifleBullet</sprite>
+    <sprites name="spr_player">
+      <sprite>sprites\spr_player2</sprite>
+      <sprite>sprites\spr_player</sprite>
+      <sprite>sprites\spr_playerShadow</sprite>
+    </sprites>
+    <sprites name="spr_weapons">
+      <sprite>sprites\spr_rifleBullet</sprite>
+      <sprite>sprites\spr_pistolBullet</sprite>
+      <sprite>sprites\spr_RPG_Bullet</sprite>
+      <sprite>sprites\spr_shotgunBullet</sprite>
+      <sprite>sprites\spr_pistol</sprite>
+      <sprite>sprites\spr_shotgun</sprite>
+      <sprite>sprites\spr_RPG</sprite>
+      <sprite>sprites\spr_rifle</sprite>
+    </sprites>
+    <sprites name="spr_environment">
+      <sprite>sprites\spr_block</sprite>
+      <sprite>sprites\spr_boxTop</sprite>
+      <sprite>sprites\spr_door</sprite>
+      <sprite>sprites\spr_blockTriangle</sprite>
+    </sprites>
+    <sprites name="spr_other">
+      <sprite>sprites\spr_StartButton</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -36,18 +44,27 @@
     <script>scripts\drawSquareAt.gml</script>
   </scripts>
   <objects name="objects">
-    <object>objects\obj_block</object>
-    <object>objects\obj_buttonStart</object>
-    <object>objects\obj_door</object>
-    <object>objects\obj_player</object>
-    <object>objects\obj_room</object>
-    <object>objects\system</object>
-    <object>objects\obj_roomChecker</object>
-    <object>objects\obj_blockTop</object>
-    <object>objects\obj_pistol_Bullet</object>
-    <object>objects\obj_rifle_Bullet</object>
-    <object>objects\obj_RPG_Bullet</object>
-    <object>objects\obj_shotgun_Bullet</object>
+    <objects name="environment">
+      <object>objects\obj_block</object>
+      <object>objects\obj_blockTop</object>
+      <object>objects\obj_door</object>
+    </objects>
+    <objects name="player">
+      <object>objects\obj_player</object>
+    </objects>
+    <objects name="weapons">
+      <object>objects\obj_bullet</object>
+      <object>objects\obj_pistol_Bullet</object>
+      <object>objects\obj_rifle_Bullet</object>
+      <object>objects\obj_RPG_Bullet</object>
+      <object>objects\obj_shotgun_Bullet</object>
+    </objects>
+    <objects name="other">
+      <object>objects\obj_buttonStart</object>
+      <object>objects\system</object>
+      <object>objects\obj_room</object>
+      <object>objects\obj_roomChecker</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <rooms name="_SYS_ROOMS">

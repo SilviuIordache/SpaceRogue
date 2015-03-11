@@ -93,10 +93,17 @@ script_execute(scr_GenerateDungeon);
 
 
 //----- WEAPONS--------------------------------------------------------------
-global.pistol_Bullet_Speed = 3;
-global.rifle_Bullet_Speed = 3;
+global.pistol_Bullet_Speed  = 3;
+global.pistol_Bullet_cd     = 2;
+
+global.rifle_Bullet_Speed   = 3;
+global.rifle_Bullet_cd      = 2;
+
 global.shotgun_Bullet_Speed = 3;
-global.RPG_Bullet_Speed = 3;
+global.shotgun_Bullet_cd    = 2;
+
+global.RPG_Bullet_Speed     = 3;
+global.RPG_Bullet_cd        = 2;
 //--------------------------------------------------------------------------- 
 
 </string>

@@ -48,11 +48,11 @@ for (i = 0; i < roomArrayW; i++)
     {
         if (roomArray[i,j].available == 1 )
         {
-            //script_execute(drawSquareAt, i, j, c_orange) // MAIN PATH
+            script_execute(drawSquareAt, i, j, c_orange) // MAIN PATH
         }
         else if (roomArray[i,j].available == 2 )
         {
-            //script_execute(drawSquareAt, i, j, c_purple) // ADDITIONAL ROOMS
+            script_execute(drawSquareAt, i, j, c_purple) // ADDITIONAL ROOMS
         }
     }
 }
@@ -60,6 +60,6 @@ for (i = 0; i < roomArrayW; i++)
 script_execute(drawSquareAt, xArrayStart, yArrayStart, c_green)  // START
 script_execute(drawSquareAt, xArrayFinish, xArrayFinish, c_red)  //FINISH
 
-//script_execute(drawSquareAt, xMapPlayer, yMapPlayer, c_blue)  //Player Location
+script_execute(drawSquareAt, xMapPlayer, yMapPlayer, c_blue)  //Player Location
 
 //-------------------------------------------------------------------------------
