@@ -33,6 +33,7 @@
     <script>scripts\setRoomLayout.gml</script>
     <script>scripts\scr_GenerateDungeon.gml</script>
     <script>scripts\scr_placeDoors.gml</script>
+    <script>scripts\drawSquareAt.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_block</object>

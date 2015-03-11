@@ -57,8 +57,8 @@ for (i = 0; i < roomArrayW; i++)
     }
 }
 
-//script_execute(drawSquareAt, xArrayStart, yArrayStart, c_green)  // START
-//script_execute(drawSquareAt, xArrayFinish, xArrayFinish, c_red)  //FINISH
+script_execute(drawSquareAt, xArrayStart, yArrayStart, c_green)  // START
+script_execute(drawSquareAt, xArrayFinish, xArrayFinish, c_red)  //FINISH
 
 //script_execute(drawSquareAt, xMapPlayer, yMapPlayer, c_blue)  //Player Location
 
