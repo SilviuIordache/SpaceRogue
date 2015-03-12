@@ -32,6 +32,98 @@ currentWeapon = 0; //1 = Pistol ;; 2 = Assault ;; 3 = Shotgun ;; 4 = Rocket
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.canShootRPG = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.canShootShotgun = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.canShootRifle = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.canShootPistol = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -81,14 +173,30 @@ if (speed &gt; playerTopSpeed) {
 //---------WEAPONS------------------------------------------------
 
 //-----Shooting Bullets------------------------
-if(currentWeapon == 1 &amp;&amp; mouse_check_button(mb_left))
-   instance_create(obj_player.x + 11, obj_player.y + 10, obj_pistol_Bullet);
-if(currentWeapon == 2 &amp;&amp; mouse_check_button(mb_left))
-   instance_create(obj_player.x + 11, obj_player.y + 10, obj_rifle_Bullet);
-if(currentWeapon == 3 &amp;&amp; mouse_check_button(mb_left))
-   instance_create(obj_player.x + 11, obj_player.y + 10, obj_shotgun_Bullet);
-if(currentWeapon == 4 &amp;&amp; mouse_check_button(mb_left))
-   instance_create(obj_player.x + 11, obj_player.y + 10, obj_pistol_Bullet);
+if(currentWeapon == 1 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootPistol)
+{
+    global.canShootPistol = false;
+    instance_create(obj_player.x + 11, obj_player.y + 10, obj_pistol_Bullet);
+    alarm[1] = global.pistol_Bullet_cd;
+}
+if(currentWeapon == 2 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootRifle )
+{
+    global.canShootRifle = false;
+    instance_create(obj_player.x + 11, obj_player.y + 10, obj_rifle_Bullet);
+    alarm[2] = global.rifle_Bullet_cd;
+}
+if(currentWeapon == 3 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootShotgun)
+{
+    global.canShootShotgun = false;
+    instance_create(obj_player.x + 11, obj_player.y + 10, obj_shotgun_Bullet);
+    alarm[3] = global.shotgun_Bullet_cd;
+}
+if(currentWeapon == 4 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootRPG)
+{
+    global.canShootRPG = false;
+    instance_create(obj_player.x + 11, obj_player.y + 10, obj_RPG_Bullet);
+    alarm[4] = global.RPG_Bullet_cd;
+}
 //---------------------------------------------
 
 //-----Switching weapons-----------------------
