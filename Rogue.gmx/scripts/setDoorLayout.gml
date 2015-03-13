@@ -1,4 +1,3 @@
-
 for (i = 0; i < roomArrayW; i += 1)
 {
     for (j = 0; j < roomArrayH; j += 1)
@@ -8,7 +7,6 @@ for (i = 0; i < roomArrayW; i += 1)
             roomArray[i, j].available == 4 ||
             roomArray[i, j].available == 2 )
         {
-        
             if ( roomArray[i, j - 1].available >=  1 && roomArray[i, j - 1].available <= 9)
                               roomArray[i, j].doorLayout = 1;
             if ( roomArray[i, j + 1].available >=  1 && roomArray[i, j + 1].available <= 9)
@@ -67,12 +65,9 @@ for (i = 0; i < roomArrayW; i += 1)
                 (roomArray[i, j + 1].available >= 1 && roomArray[i - 1, j].available <= 9) &&
                 (roomArray[i, j - 1].available >= 1 && roomArray[i, j + 1].available <= 9))
                     roomArray[i, j].doorLayout = 15;
-        
         }
     }
 }
-
-
 
 /*
 ________________________________

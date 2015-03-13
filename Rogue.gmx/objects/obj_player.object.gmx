@@ -249,8 +249,8 @@ if(obj_player.x &lt; 17) // left
         roomName = roomArray[xMapPlayer - 1, yMapPlayer].roomLayout;
     room_goto(asset_get_index(roomName));
     xMapPlayer -= 1;
-    obj_player.x = 192;
-    obj_player.y = 80;    
+    obj_player.x = 200;
+    obj_player.y = 72;    
 }
 if(obj_player.x &gt; 200) //right
 {
@@ -264,8 +264,8 @@ if(obj_player.x &gt; 200) //right
         roomName = roomArray[xMapPlayer + 1, yMapPlayer].roomLayout;
     room_goto(asset_get_index(roomName));
     xMapPlayer += 1;
-    obj_player.x = 32;
-    obj_player.y = 80;
+    obj_player.x = 12;
+    obj_player.y = 72;
 }
 if(obj_player.y &lt; 17) //up
 {
@@ -280,7 +280,7 @@ if(obj_player.y &lt; 17) //up
     room_goto(asset_get_index(roomName));
     yMapPlayer -= 1;
     obj_player.x = 112;
-    obj_player.y = 118;
+    obj_player.y = 140;
 }
 if(obj_player.y &gt; 140) //down
 {
@@ -295,7 +295,7 @@ if(obj_player.y &gt; 140) //down
     room_goto(asset_get_index(roomName));
     yMapPlayer += 1;
     obj_player.x = 112;
-    obj_player.y = 32;
+    obj_player.y = 10;
 }
 </string>
           </argument>

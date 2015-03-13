@@ -26,12 +26,15 @@
       <sprite>sprites\spr_boxTop</sprite>
       <sprite>sprites\spr_door</sprite>
       <sprite>sprites\spr_blockTriangle</sprite>
+      <sprite>sprites\spr_blockTemp</sprite>
     </sprites>
     <sprites name="spr_other">
       <sprite>sprites\spr_StartButton</sprite>
     </sprites>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\ts_floor</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\pathConnect.gml</script>
@@ -42,6 +45,7 @@
     <script>scripts\scr_GenerateDungeon.gml</script>
     <script>scripts\scr_placeDoors.gml</script>
     <script>scripts\drawSquareAt.gml</script>
+    <script>scripts\scr_buildDoors.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="environment">
@@ -132,7 +136,7 @@
     </rooms>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">42075.5482170023</constant>
+    <constant name="GM_build_date">42076.6447867824</constant>
     <constant name="GM_version">'1.0.0.0'</constant>
   </constants>
   <help>

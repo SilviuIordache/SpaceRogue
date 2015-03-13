@@ -1,144 +1,51 @@
 if(room_get_name(room) != "rm_MENU")
 {
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 1 ) //UP
+    switch (roomArray[xMapPlayer, yMapPlayer].doorLayout)
     {
-        with (instance_nearest(112, 0, obj_block)) instance_destroy();
-        with (instance_nearest(112, 0, obj_blockTop)) instance_destroy();    
-             instance_create(112, 0, obj_door);
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 2 ) //DOWN
-    {
-        with (instance_nearest(112, 160, obj_block)) instance_destroy();
-        with (instance_nearest(112, 160, obj_blockTop)) instance_destroy();    
-             instance_create(112, 160, obj_door);    
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 3 ) //RIGHT
-    {
-        with (instance_nearest(224, 80, obj_block)) instance_destroy();
-        with (instance_nearest(224, 80, obj_blockTop)) instance_destroy();    
-             instance_create(224, 80, obj_door);   
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 4 ) //LEFT
-    {
-        with (instance_nearest(0, 80, obj_block)) instance_destroy();
-        with (instance_nearest(0, 80, obj_blockTop)) instance_destroy();    
-             instance_create(0, 80, obj_door);   
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 5 )
-    {
-        with (instance_nearest(112, 0, obj_block)) instance_destroy(); 
-        with (instance_nearest(112, 0, obj_blockTop)) instance_destroy();     
-             instance_create(112, 0, obj_door);
-        with (instance_nearest(0, 80, obj_block)) instance_destroy();
-        with (instance_nearest(0, 80, obj_blockTop)) instance_destroy();    
-             instance_create(0, 80, obj_door); 
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 6 )
-    {
-        with (instance_nearest(112, 0, obj_block)) instance_destroy();
-        with (instance_nearest(112, 0, obj_blockTop)) instance_destroy();    
-             instance_create(112, 0, obj_door);  
-        with (instance_nearest(112, 160, obj_block)) instance_destroy();
-        with (instance_nearest(112, 160, obj_blockTop)) instance_destroy();  
-             instance_create(112, 160, obj_door);           
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 7 )
-    {
-        with (instance_nearest(112, 0, obj_block)) instance_destroy();  
-        with (instance_nearest(112, 0, obj_blockTop)) instance_destroy();    
-             instance_create(112, 0, obj_door); 
-        with (instance_nearest(224, 80, obj_block)) instance_destroy();
-        with (instance_nearest(224, 80, obj_blockTop)) instance_destroy();    
-             instance_create(224, 80, obj_door);      
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 8 )
-    {
-        with (instance_nearest(224, 80, obj_block)) instance_destroy();
-        with (instance_nearest(224, 80, obj_blockTop)) instance_destroy();    
-             instance_create(224, 80, obj_door);  
-        with (instance_nearest(0, 80, obj_block)) instance_destroy();
-        with (instance_nearest(0, 80, obj_blockTop)) instance_destroy();    
-             instance_create(0, 80, obj_door); 
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 9 )
-    {
-        with (instance_nearest(0, 80, obj_block)) instance_destroy();
-        with (instance_nearest(0, 80, obj_blockTop)) instance_destroy();    
-             instance_create(0, 80, obj_door); 
-        with (instance_nearest(112, 160, obj_block)) instance_destroy();
-        with (instance_nearest(112, 160, obj_blockTop)) instance_destroy();    
-             instance_create(112, 160, obj_door);         
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 10 )
-    {
-        with (instance_nearest(224, 80, obj_block)) instance_destroy();
-        with (instance_nearest(224, 80, obj_blockTop)) instance_destroy();    
-             instance_create(224, 80, obj_door); 
-        with (instance_nearest(112, 160, obj_block)) instance_destroy();
-        with (instance_nearest(112, 160, obj_blockTop)) instance_destroy();    
-             instance_create(112, 160, obj_door);    
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 11 )
-    {
-        with (instance_nearest(112, 0, obj_block)) instance_destroy();  
-        with (instance_nearest(112, 0, obj_blockTop)) instance_destroy();    
-             instance_create(112, 0, obj_door);
-        with (instance_nearest(224, 80, obj_block)) instance_destroy();
-        with (instance_nearest(224, 80, obj_blockTop)) instance_destroy();    
-             instance_create(224, 80, obj_door);  
-        with (instance_nearest(0, 80, obj_block)) instance_destroy();
-        with (instance_nearest(0, 80, obj_blockTop)) instance_destroy();    
-             instance_create(0, 80, obj_door); 
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 12 )
-    {
-        with (instance_nearest(112, 0, obj_block)) instance_destroy();  
-        with (instance_nearest(112, 0, obj_blockTop)) instance_destroy();    
-             instance_create(112, 0, obj_door);
-        with (instance_nearest(0, 80, obj_block)) instance_destroy();
-        with (instance_nearest(0, 80, obj_blockTop)) instance_destroy();    
-             instance_create(0, 80, obj_door); 
-        with (instance_nearest(112, 160, obj_block)) instance_destroy();
-        with (instance_nearest(112, 160, obj_blockTop)) instance_destroy();    
-             instance_create(112, 160, obj_door);  
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 13 )
-    {
-        with (instance_nearest(112, 0, obj_block)) instance_destroy();  
-        with (instance_nearest(112, 0, obj_blockTop)) instance_destroy();    
-             instance_create(112, 0, obj_door);
-        with (instance_nearest(224, 80, obj_block)) instance_destroy();
-        with (instance_nearest(224, 80, obj_blockTop)) instance_destroy();    
-             instance_create(224, 80, obj_door); 
-        with (instance_nearest(112, 160, obj_block)) instance_destroy();
-        with (instance_nearest(112, 160, obj_blockTop)) instance_destroy();    
-             instance_create(112, 160, obj_door);  
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 14 )
-    {
-        with (instance_nearest(0, 80, obj_block)) instance_destroy();
-        with (instance_nearest(0, 80, obj_blockTop)) instance_destroy();    
-             instance_create(0, 80, obj_door); 
-        with (instance_nearest(224, 80, obj_block)) instance_destroy();
-        with (instance_nearest(224, 80, obj_blockTop)) instance_destroy();    
-             instance_create(224, 80, obj_door); 
-        with (instance_nearest(112, 160, obj_block)) instance_destroy();
-        with (instance_nearest(112, 160, obj_blockTop)) instance_destroy();    
-             instance_create(112, 160, obj_door);   
-    }
-    if (roomArray[xMapPlayer, yMapPlayer].doorLayout == 15 )
-    {
-        with (instance_nearest(112, 0, obj_block)) instance_destroy();  
-        with (instance_nearest(112, 0, obj_blockTop)) instance_destroy();    
-             instance_create(112, 0, obj_door);
-        with (instance_nearest(0, 80, obj_block)) instance_destroy();
-        with (instance_nearest(0, 80, obj_blockTop)) instance_destroy();    
-             instance_create(0, 80, obj_door); 
-        with (instance_nearest(224, 80, obj_block)) instance_destroy();
-        with (instance_nearest(224, 80, obj_blockTop)) instance_destroy();    
-             instance_create(224, 80, obj_door); 
-        with (instance_nearest(112, 160, obj_block)) instance_destroy();
-        with (instance_nearest(112, 160, obj_blockTop)) instance_destroy();    
-             instance_create(112, 160, obj_door);   
-    }
+        case 1:
+            script_execute(scr_buildDoors, 0, 0, 1, 0);
+            break;
+        case 2:
+            script_execute(scr_buildDoors, 0, 0, 0, 1);
+            break;
+        case 3:
+            script_execute(scr_buildDoors, 0, 1, 0, 0);
+            break;
+        case 4:
+            script_execute(scr_buildDoors, 1, 0, 0, 0);
+            break;
+        case 5:
+            script_execute(scr_buildDoors, 1, 0, 1, 0);
+            break;
+        case 6:
+            script_execute(scr_buildDoors, 0, 0, 1, 1);
+            break;
+        case 7:
+            script_execute(scr_buildDoors, 0, 1, 1, 0);
+            break;
+        case 8:
+            script_execute(scr_buildDoors, 1, 1, 0, 0);
+            break;
+        case 9:
+            script_execute(scr_buildDoors, 1, 0, 0, 1);
+            break;
+        case 10:
+            script_execute(scr_buildDoors, 0, 1, 0, 1);
+            break;
+        case 11:
+            script_execute(scr_buildDoors, 1, 1, 1, 0);
+            break;
+        case 12:
+            script_execute(scr_buildDoors, 1, 0, 1, 1);
+            break;
+        case 13:
+            script_execute(scr_buildDoors, 0, 1, 1, 1);
+            break;
+        case 14:
+            script_execute(scr_buildDoors, 1, 1, 0, 1);
+            break;
+        case 15:
+            script_execute(scr_buildDoors, 1, 1, 1, 1);
+            break;                 
+   }
 }

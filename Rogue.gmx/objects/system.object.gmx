@@ -85,6 +85,7 @@ for (i = 0; i &lt; roomArrayW; i++)
     for(j = 0; j &lt; roomArrayH; j++)
     {
         roomArray[i,j] = instance_create(i, j, obj_room);
+        roomArray[i,j].roomLayout = "rm_1_1";
     }
 }
 
