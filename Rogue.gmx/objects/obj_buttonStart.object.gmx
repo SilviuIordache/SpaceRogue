@@ -55,7 +55,8 @@ roomIndex = irandom(nrOfRooms - 1) + 1
 roomName = string("rm_"+string(roomArray[xMapPlayer, yMapPlayer].doorLayout)+"_"+string(roomIndex))
 roomArray[xMapPlayer, yMapPlayer].roomLayout = roomName;
 
-room_goto(asset_get_index(roomName));
+//room_goto(asset_get_index(roomName));
+room_goto(rm_test);
 
 
 

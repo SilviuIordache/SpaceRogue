@@ -237,8 +237,11 @@ if keyboard_check_pressed(ord("4")) // RPG
             <kind>1</kind>
             <string>nrOfRooms = 2;
 
+
+
 if(obj_player.x &lt; 17) // left
 {
+/*
     if (roomArray[xMapPlayer - 1, yMapPlayer].roomLayout == "")
     {
         roomIndex = irandom(nrOfRooms - 1) + 1
@@ -247,13 +250,17 @@ if(obj_player.x &lt; 17) // left
     }
     else
         roomName = roomArray[xMapPlayer - 1, yMapPlayer].roomLayout;
+       
     room_goto(asset_get_index(roomName));
+    */
+    room_goto(rm_test);
     xMapPlayer -= 1;
     obj_player.x = 200;
     obj_player.y = 72;    
 }
 if(obj_player.x &gt; 200) //right
 {
+/*
     if (roomArray[xMapPlayer + 1, yMapPlayer].roomLayout == "")
     {
         roomIndex = irandom(nrOfRooms - 1) + 1
@@ -263,12 +270,15 @@ if(obj_player.x &gt; 200) //right
     else
         roomName = roomArray[xMapPlayer + 1, yMapPlayer].roomLayout;
     room_goto(asset_get_index(roomName));
+    */
+    room_goto(rm_test);
     xMapPlayer += 1;
     obj_player.x = 12;
     obj_player.y = 72;
 }
 if(obj_player.y &lt; 17) //up
 {
+/*
     if (roomArray[xMapPlayer, yMapPlayer - 1].roomLayout == "")
     {
         roomIndex = irandom(nrOfRooms - 1) + 1
@@ -278,12 +288,15 @@ if(obj_player.y &lt; 17) //up
     else
         roomName = roomArray[xMapPlayer, yMapPlayer - 1].roomLayout;
     room_goto(asset_get_index(roomName));
+    */
+    room_goto(rm_test);
     yMapPlayer -= 1;
     obj_player.x = 112;
     obj_player.y = 140;
 }
 if(obj_player.y &gt; 140) //down
 {
+/*
     if (roomArray[xMapPlayer, yMapPlayer + 1].roomLayout == "")
     {
         roomIndex = irandom(nrOfRooms - 1) + 1
@@ -293,6 +306,8 @@ if(obj_player.y &gt; 140) //down
     else
         roomName = roomArray[xMapPlayer, yMapPlayer + 1].roomLayout;
     room_goto(asset_get_index(roomName));
+    */
+    room_goto(rm_test);
     yMapPlayer += 1;
     obj_player.x = 112;
     obj_player.y = 10;
@@ -420,7 +435,7 @@ if(obj_player.y &gt; 140) //down
             <string>depth = -2
 draw_self();
 depth = -1
-draw_sprite_ext( spr_playerShadow, image_index, x + 12, y + 20, image_xscale, image_yscale, image_angle, image_blend, 0.2 );
+draw_sprite_ext( spr_playerShadow, image_index, x + 12, y + 18, image_xscale, image_yscale, image_angle, image_blend, 0.2 );
 
 if( mouse_x &gt; obj_player.x)
     weaponOrientation = -1; 
