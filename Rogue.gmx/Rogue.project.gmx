@@ -23,13 +23,18 @@
     </sprites>
     <sprites name="spr_environment">
       <sprite>sprites\spr_block</sprite>
+      <sprite>sprites\spr_LockedDoor</sprite>
       <sprite>sprites\spr_boxTop</sprite>
+      <sprite>sprites\spr_lock</sprite>
       <sprite>sprites\spr_door</sprite>
       <sprite>sprites\spr_blockTriangle</sprite>
       <sprite>sprites\spr_blockTemp</sprite>
+      <sprite>sprites\spr_light</sprite>
+      <sprite>sprites\spr_light_3</sprite>
     </sprites>
     <sprites name="spr_other">
       <sprite>sprites\spr_StartButton</sprite>
+      <sprite>sprites\spr_blank</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -50,7 +55,9 @@
   <objects name="objects">
     <objects name="environment">
       <object>objects\obj_block</object>
+      <object>objects\obj_LockedDoor</object>
       <object>objects\obj_blockTop</object>
+      <object>objects\obj_LockedDoorTop</object>
       <object>objects\obj_door</object>
       <object>objects\obj_wall</object>
     </objects>
@@ -71,8 +78,8 @@
       <object>objects\obj_roomChecker</object>
     </objects>
     <objects name="monster">
-      <object>objects\hazard</object>
-      <object>objects\monster</object>
+      <object>objects\obj_hazard</object>
+      <object>objects\obj_monster</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -145,7 +152,7 @@
     </rooms>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">42076.6447867824</constant>
+    <constant name="GM_build_date">42080.6784380787</constant>
     <constant name="GM_version">'1.0.0.0'</constant>
   </constants>
   <help>
