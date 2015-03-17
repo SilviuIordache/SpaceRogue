@@ -3,6 +3,7 @@ draw_set_alpha(0.5);
 draw_rectangle_colour(1, 1, 50, 50, c_white, c_white, c_white, c_white, false); // minimap white bck
 draw_set_alpha(1);
 
+
 // Draw the the grid & the information numbers-----------------------
 for (i = 0; i < roomArrayW; i += 1)
 {

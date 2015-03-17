@@ -80,6 +80,7 @@
       <room>rooms\rm_MENU</room>
     </rooms>
     <rooms name="_Test">
+      <room>rooms\rm_test_02</room>
       <room>rooms\rm_test</room>
     </rooms>
     <rooms name="RM_1">
