@@ -16,6 +16,7 @@ for (i = 0; i < roomArrayW; i += 1)
                        j * arrayCellSize + arrayCellSize, 
                        true
                        );    
+        //------DEBUG-----------------------------------------------
         /*   
         if(swapMiniMapInfo == -1)
         {          
@@ -49,6 +50,26 @@ for (i = 0; i < roomArrayW; i++)
 {
     for(j = 0; j < roomArrayH; j++)
     {
+        o = roomArray[i,j].available;
+        if (roomArray[i,j].cleared == true)
+        {
+            script_execute(drawSquareAt, i, j, c_green)
+        }
+        else if (o == 1 ||  o == 4 || o == 9 || o == 2)
+        {
+            script_execute(drawSquareAt, i, j, c_orange)
+        }
+    }
+}
+
+script_execute(drawSquareAt, xMapPlayer, yMapPlayer, c_blue)  //Player Location
+
+//---------DEBUG COLORING--------------------------------------
+/*
+for (i = 0; i < roomArrayW; i++)
+{
+    for(j = 0; j < roomArrayH; j++)
+    {
         if (roomArray[i,j].available == 1 )
         {
             script_execute(drawSquareAt, i, j, c_orange) // MAIN PATH
@@ -62,7 +83,6 @@ for (i = 0; i < roomArrayW; i++)
 
 script_execute(drawSquareAt, xArrayStart, yArrayStart, c_green)  // START
 script_execute(drawSquareAt, xArrayFinish, xArrayFinish, c_red)  //FINISH
-
 script_execute(drawSquareAt, xMapPlayer, yMapPlayer, c_blue)  //Player Location
-
+*/
 //-------------------------------------------------------------------------------

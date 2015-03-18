@@ -4,6 +4,7 @@ for (i = 0; i < roomArrayW; i ++) {
         roomArray[i, j].available = 0;
         roomArray[i, j].doorLayout = 0;
         roomArray[i, j].roomLayout = "";
+        roomArray[i, j].cleared = false;
     }
 }
 //---------------------------------------
@@ -21,7 +22,7 @@ for (i = 0; i < roomArrayH; i ++) { // border the grid with 3s
 //---------------------------------------------------------------
 
 
-//-----------------GENERATE RANDOM ROOM VARIABLES--------------------------
+//-----------------GENERATE RANDOM ROOM VARIABLES-------------------------
 xArrayStart  = irandom(roomArrayH - 3) + 1;
 yArrayStart  = irandom(roomArrayH - 3) + 1;
 xArrayFinish = irandom(roomArrayH - 3) + 1;
