@@ -8,7 +8,6 @@
   <sprites name="sprites">
     <sprites name="spr_player">
       <sprite>sprites\spr_player2</sprite>
-      <sprite>sprites\spr_player</sprite>
       <sprite>sprites\spr_playerShadow</sprite>
     </sprites>
     <sprites name="spr_weapons">
@@ -36,6 +35,10 @@
       <sprite>sprites\spr_StartButton</sprite>
       <sprite>sprites\spr_blank</sprite>
     </sprites>
+    <sprites name="spr_hazards">
+      <sprite>sprites\spr_Goober</sprite>
+      <sprite>sprites\spr_Burker</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\ts_floor</background>
@@ -55,8 +58,8 @@
   <objects name="objects">
     <objects name="environment">
       <object>objects\obj_block</object>
-      <object>objects\obj_LockedDoor</object>
       <object>objects\obj_blockTop</object>
+      <object>objects\obj_LockedDoor</object>
       <object>objects\obj_LockedDoorTop</object>
       <object>objects\obj_door</object>
       <object>objects\obj_wall</object>
@@ -68,8 +71,8 @@
       <object>objects\obj_bullet</object>
       <object>objects\obj_pistol_Bullet</object>
       <object>objects\obj_rifle_Bullet</object>
-      <object>objects\obj_RPG_Bullet</object>
       <object>objects\obj_shotgun_Bullet</object>
+      <object>objects\obj_RPG_Bullet</object>
     </objects>
     <objects name="other">
       <object>objects\obj_buttonStart</object>
@@ -80,6 +83,8 @@
     <objects name="monster">
       <object>objects\obj_hazard</object>
       <object>objects\obj_monster</object>
+      <object>objects\obj_Burker</object>
+      <object>objects\obj_Goober</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -87,8 +92,8 @@
       <room>rooms\rm_MENU</room>
     </rooms>
     <rooms name="_Test">
-      <room>rooms\rm_test_02</room>
       <room>rooms\rm_test</room>
+      <room>rooms\rm_test_02</room>
     </rooms>
     <rooms name="RM_1">
       <room>rooms\rm_1_1</room>
@@ -152,7 +157,7 @@
     </rooms>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">42080.6784380787</constant>
+    <constant name="GM_build_date">42081.6516874421</constant>
     <constant name="GM_version">'1.0.0.0'</constant>
   </constants>
   <help>

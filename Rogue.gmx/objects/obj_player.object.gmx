@@ -173,7 +173,7 @@ if (speed &gt; playerTopSpeed) {
 //---------WEAPONS------------------------------------------------
 
 //-----Shooting Bullets------------------------
-if(currentWeapon == 1 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootPistol)
+if(currentWeapon == 1 &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; global.canShootPistol)
 {
     global.canShootPistol = false;
     instance_create(obj_player.x + 11, obj_player.y + 10, obj_pistol_Bullet);

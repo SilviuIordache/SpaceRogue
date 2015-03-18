@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 speed = global.RPG_Bullet_Speed;
+dmg = global.RPG_Bullet_Dmg;
 </string>
           </argument>
         </arguments>

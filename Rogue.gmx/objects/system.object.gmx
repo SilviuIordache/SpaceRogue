@@ -95,45 +95,35 @@ script_execute(scr_GenerateDungeon);
 
 //----- WEAPONS--------------------------------------------------------------
 global.pistol_Bullet_Speed      = 2
+global.pistol_Bullet_Dmg        = 5;
 global.pistol_Bullet_cd         = 20
 global.canShootPistol           = true
 
 global.rifle_Bullet_Speed       = 1.75
+global.rifle_Bullet_Dmg         = 1.5;
 global.rifle_Bullet_cd          = 6
 global.canShootRifle            = true
 
 global.shotgun_Bullet_Speed     = 1.5
+global.shotgun_Bullet_Dmg       = 3.5;
 global.shotgun_Bullet_cd        = 40
 global.canShootShotgun          = true
 
 global.RPG_Bullet_Speed         = 2
+global.RPG_Bullet_Dmg           = 10;
 global.RPG_Bullet_cd            = 100;
 global.canShootRPG              = true
 //--------------------------------------------------------------------------- 
 
+
+//----HAZARDS----------------------------------------------------------------
+global.monster_Goober_hp        = 10;
+global.monster_Goober_speed     = 1;
+
+global.monster_Burker_hp        = 5;
+global.monster_Burker_speed     = 2;
+//---------------------------------------------------------------------------
 </string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
           </argument>
         </arguments>
       </action>
@@ -186,13 +176,7 @@ with(obj_player) instance_destroy();
 //Debug Draw
 //draw_text(100, 100, room_get_name(0));
 
-//draw_text(100, 100, room_get_name(4));
-//abc = 0; //becomes int
-//abc = "text" // becomes string
-//abc = 0; //becomes int again
-//str2 = abc;
-//str = "rm_" + string(str2) + "_1"
-draw_text(100, 130, string(roomArray[xMapPlayer, yMapPlayer].roomLayout));
+//draw_text(100, 130, string(roomArray[xMapPlayer, yMapPlayer].roomLayout));
 
 </string>
           </argument>

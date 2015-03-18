@@ -15,7 +15,8 @@ for (i = 0; i < roomArrayW; i += 1)
                        i * arrayCellSize + arrayCellSize, 
                        j * arrayCellSize + arrayCellSize, 
                        true
-                       );       
+                       );    
+        /*   
         if(swapMiniMapInfo == -1)
         {          
             draw_text_transformed(
@@ -38,6 +39,7 @@ for (i = 0; i < roomArrayW; i += 1)
                                  image_angle
                                  );
         }
+        */
     }
 }
 //--------------------------------------------------------------------------------------------
