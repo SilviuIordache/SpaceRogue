@@ -5,6 +5,7 @@ for (i = 0; i < roomArrayW; i ++) {
         roomArray[i, j].doorLayout = 0;
         roomArray[i, j].roomLayout = "";
         roomArray[i, j].cleared = false;
+        roomArray[i, j].nearUnexplored = false;
     }
 }
 //---------------------------------------
@@ -13,8 +14,6 @@ for (i = 0; i < roomArrayW; i ++) {
 for (i = 0; i < roomArrayW; i ++) { // border the grid with 3s
     roomArray[0, i].available               = -3;
     roomArray[roomArrayH - 1, i].available  = -3;
-}
-for (i = 0; i < roomArrayH; i ++) { // border the grid with 3s
     roomArray[i, 0].available               = -3;
     roomArray[i, roomArrayH - 1].available  = -3;
 }

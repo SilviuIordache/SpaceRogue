@@ -57,6 +57,7 @@ roomArray[xMapPlayer, yMapPlayer].roomLayout = roomName;
 
 //room_goto(asset_get_index(roomName));
 room_goto(rm_test);
+script_execute(scr_markNearUnexplored, xMapPlayer, yMapPlayer)
 
 
 

@@ -210,7 +210,15 @@ if keyboard_check_pressed(ord("4")) // RPG
     currentWeapon = 4;
 //--------------------------------------------
 
-
+//-------DEBUG KILL ALL-------------------------------------------------
+if( mouse_check_button(mb_right))
+{
+ with(obj_monster)
+ {
+    instance_destroy();
+ }
+}
+//---------------------------------------------------------------------------
 
 </string>
           </argument>
@@ -235,8 +243,6 @@ if keyboard_check_pressed(ord("4")) // RPG
           <argument>
             <kind>1</kind>
             <string>nrOfRooms = 2;
-
-
 
 if(obj_player.x &lt; 17) // left
 {
@@ -311,6 +317,11 @@ if(obj_player.y &gt; 140) //down
     obj_player.x = 112;
     obj_player.y = 10;
 }
+
+roomArray[xMapPlayer, yMapPlayer].explored = true;
+roomArray[xMapPlayer, yMapPlayer].nearUnexplored = false;
+
+script_execute(scr_markNearUnexplored, xMapPlayer, yMapPlayer)
 </string>
           </argument>
         </arguments>

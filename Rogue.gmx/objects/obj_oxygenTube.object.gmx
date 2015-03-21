@@ -48,7 +48,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>draw_set_alpha(0.1);
+draw_sprite_ext( spr_oxygen_amount, image_index, x, y,  oxygenLevel / oxygenLevelInitial, 1, 0, c_white, 1 );
+draw_self();
+
 </string>
           </argument>
         </arguments>

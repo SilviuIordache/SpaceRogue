@@ -56,6 +56,7 @@
     <script>scripts\scr_placeDoors.gml</script>
     <script>scripts\drawSquareAt.gml</script>
     <script>scripts\scr_buildDoors.gml</script>
+    <script>scripts\scr_markNearUnexplored.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="environment">
@@ -78,10 +79,9 @@
       <object>objects\obj_RPG_Bullet</object>
     </objects>
     <objects name="other">
-      <object>objects\obj_buttonStart</object>
-      <object>objects\system</object>
+      <object>objects\obj_system</object>
       <object>objects\obj_room</object>
-      <object>objects\obj_roomChecker</object>
+      <object>objects\obj_buttonStart</object>
     </objects>
     <objects name="monster">
       <object>objects\obj_hazard</object>
