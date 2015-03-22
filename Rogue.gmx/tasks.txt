@@ -1,7 +1,11 @@
+[0] fix starting room, when pressing R, it should lead to an empty room
 [0] make the game frame independent, delta time
 [0] make variable and implement in all for PAUSE
+[0] implement weapon unlocking system: GUN -> room 0, RIFLE -> rooms 4-8, SHOTGUN -> rooms +5-9, RPG -> rooms +6-10
 [0] basic walk animations for player & monsters
 [0] fix RPG into land mine launcher
+[0] implement proper Mine Launcher(smaller mine radius)
+[0] Make a better Menu
 [0] add rooms with no enemies in it
 [0] limit the dungeon maze to a bigger minimum
 [0] add more complex shapes to the dungeon maze
