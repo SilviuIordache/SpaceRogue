@@ -1,0 +1,14 @@
+[0] make the game frame independent, delta time
+[0] make variable and implement in all for PAUSE
+[0] basic walk animations for player & monsters
+[0] fix RPG into land mine launcher
+[0] add rooms with no enemies in it
+[0] limit the dungeon maze to a bigger minimum
+[0] add more complex shapes to the dungeon maze
+[0] try to remove enemies invulnerable time by holding all the collision events in a single object
+[0] add a 15% to drop a HP from a monsters
+[0] design a pathfinding monster
+[0] design a projectile monster
+[0] design teleporting/invisible monster
+[0] design ghost monster that goes through walls
+[0] design a Boss
