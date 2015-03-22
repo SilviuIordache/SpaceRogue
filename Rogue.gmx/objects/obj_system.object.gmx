@@ -92,10 +92,12 @@ script_execute(scr_GenerateDungeon);
 //-----OXYGEN----------------------------------------------------------------
 globalvar oxygenLevel;
           oxygenLevel        = 100;
+globalvar oxygenLevelInitial;
+          oxygenLevelInitial = oxygenLevel;          
 globalvar oxygenRate;
           oxygenRate         = 0.1;
-globalvar oxygenLevelInitial;
-          oxygenLevelInitial = 100;
+globalvar oxygenCanDmg;
+          oxygenCanDmg       = true;
 //---------------------------------------------------------------------------
 
 
@@ -104,23 +106,28 @@ globalvar oxygenLevelInitial;
 
 //-------HEALTH POINTS-------------------
 globalvar playerHP;
-          playerHP = 5
+          playerHP         = 5
+globalvar playerCanTakeDmg;
+          playerCanTakeDmg = true
+globalvar playerDmgCd;
+          playerDmgCd      = 60;
+
 //---------------------------------------
 
 
 //----- WEAPONS--------------------------
-global.pistol_Bullet_Speed      = 3
+global.pistol_Bullet_Speed      = 5
 global.pistol_Bullet_Dmg        = 5;
 global.pistol_Bullet_cd         = 20
 global.canShootPistol           = true
 
-global.rifle_Bullet_Speed       = 2.5
-global.rifle_Bullet_Dmg         = 1.5;
+global.rifle_Bullet_Speed       = 4
+global.rifle_Bullet_Dmg         = 1.85;
 global.rifle_Bullet_cd          = 6
 global.canShootRifle            = true
 
-global.shotgun_Bullet_Speed     = 1.5
-global.shotgun_Bullet_Dmg       = 3.5;
+global.shotgun_Bullet_Speed     = 3
+global.shotgun_Bullet_Dmg       = 2.5;
 global.shotgun_Bullet_cd        = 40
 global.canShootShotgun          = true
 
@@ -132,14 +139,38 @@ global.canShootRPG              = true
 
 
 //----HAZARDS-----------------------------
-global.monster_Goober_hp        = 10;
-global.monster_Goober_speed     = 0.5;
+global.monster_Goober_hp        = 7;
+global.monster_Goober_speed     = 0.8;
 
 global.monster_Burker_hp        = 5;
-global.monster_Burker_speed     = 1.25;
+global.monster_Burker_speed     = 1.5;
 //----------------------------------------
 
 //---------------------------------------------------------------------------
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>    oxygenCanDmg = true;
+
 </string>
           </argument>
         </arguments>
@@ -175,10 +206,23 @@ if(oxygenLevel &gt; 0 &amp;&amp; roomArray[xMapPlayer, yMapPlayer].cleared == fa
     oxygenLevel -= oxygenRate;
 }
 
+if(oxygenLevel &lt; 1 &amp;&amp; oxygenCanDmg == true)
+{
+    oxygenCanDmg = false;
+    playerHP -=1
+    alarm[0] = 120;
+}
+
 if (roomArray[xMapPlayer, yMapPlayer].cleared == true)
 {
     oxygenLevel = oxygenLevelInitial;
 }
+
+if (playerHP &lt; 1)
+{
+    with(obj_player) instance_destroy()
+}
+
 
 
 </string>
@@ -236,6 +280,39 @@ with(obj_player) instance_destroy();
         </arguments>
       </action>
     </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+depth = -1000
+ww = window_get_width()
+wh = window_get_height()
+if (playerHP &lt; 1)
+{
+    draw_sprite_ext(spr_deadText, image_index, ww/2, wh/2, image_xscale * 2, image_yscale * 2, 0, c_white, 1)
+}
+
+script_execute(scr_drawHearts);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -260,6 +337,7 @@ with(obj_player) instance_destroy();
 
 //draw_text(100, 130, string(roomArray[xMapPlayer, yMapPlayer].roomLayout));
 
+draw_sprite(spr_reticle, image_index, mouse_x, mouse_y)
 </string>
           </argument>
         </arguments>
@@ -309,6 +387,7 @@ with(obj_player) instance_destroy();
 room_goto(room);
 script_execute(scr_placeDoors);
 script_execute(scr_markNearUnexplored, xMapPlayer, yMapPlayer)
+script_execute(scr_resetPlayer);
 </string>
           </argument>
         </arguments>

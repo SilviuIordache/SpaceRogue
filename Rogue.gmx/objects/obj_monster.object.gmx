@@ -104,7 +104,7 @@ tookDmg    = 0;
 {
     hp -= other.dmg;
     canTakeDmg = 0;
-    alarm[0] = 30; //cooldown after dmg
+    alarm[0] = 8; //cooldown after dmg
     tookDmg = 1
     alarm[1] = 2; // damaged quick visual feedback
 }

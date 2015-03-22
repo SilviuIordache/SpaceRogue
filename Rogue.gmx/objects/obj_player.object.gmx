@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>-1</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_transparent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -27,6 +27,53 @@
             <kind>1</kind>
             <string>friction = 0.3;
 currentWeapon = 1; //1 = Pistol ;; 2 = Assault ;; 3 = Shotgun ;; 4 = Rocket
+playerTookDmg = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="6">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>playerTookDmg = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>playerCanTakeDmg = true;
 </string>
           </argument>
         </arguments>
@@ -189,6 +236,11 @@ if(currentWeapon == 3 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.c
 {
     global.canShootShotgun = false;
     instance_create(obj_player.x + 11, obj_player.y + 10, obj_shotgun_Bullet);
+    with(instance_create(obj_player.x + 11, obj_player.y + 10, obj_shotgun_Bullet)) direction += 3
+    with(instance_create(obj_player.x + 11, obj_player.y + 10, obj_shotgun_Bullet)) direction -= 3
+    with(instance_create(obj_player.x + 11, obj_player.y + 10, obj_shotgun_Bullet)) direction += 6
+    with(instance_create(obj_player.x + 11, obj_player.y + 10, obj_shotgun_Bullet)) direction -= 6
+
     alarm[3] = global.shotgun_Bullet_cd;
 }
 if(currentWeapon == 4 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootRPG)
@@ -219,6 +271,37 @@ if( mouse_check_button(mb_right))
  }
 }
 //---------------------------------------------------------------------------
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_hazard">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (playerCanTakeDmg == true)
+{
+    global.playerHP -= 1;
+    playerCanTakeDmg = false;
+    alarm[5] = playerDmgCd;
+    playerTookDmg = true;
+    alarm[6] = 2;
+}
 
 </string>
           </argument>
@@ -318,7 +401,6 @@ if(obj_player.y &gt; 140) //down
     obj_player.y = 10;
 }
 
-roomArray[xMapPlayer, yMapPlayer].explored = true;
 roomArray[xMapPlayer, yMapPlayer].nearUnexplored = false;
 
 script_execute(scr_markNearUnexplored, xMapPlayer, yMapPlayer)
@@ -442,18 +524,25 @@ script_execute(scr_markNearUnexplored, xMapPlayer, yMapPlayer)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>depth = -2
+            <string>//----PLAYER--------------------------
+depth = -2
 draw_self();
+
+if(playerTookDmg == true)
+    image_index = 0
+else
+    image_index = 1
+
 depth = -1
 draw_sprite_ext( spr_playerShadow, image_index, x + 12, y + 18, image_xscale, image_yscale, image_angle, image_blend, 0.2 );
+//-----------------------------------------------------------------------------------------------
 
+
+//--------WEAPONS-------------------------
 if( mouse_x &gt; obj_player.x)
     weaponOrientation = -1; 
 if( mouse_x &lt;= obj_player.x)
     weaponOrientation = 1; 
-
-
-
 if (currentWeapon == 1) // PISTOL
 {
      draw_sprite_ext(spr_pistol, 0, x + 9, y + 9, 1.5 * weaponOrientation, 1.5 , point_direction(x + 11, y + 11, mouse_x, mouse_y) + 180 * (weaponOrientation + 1) /2, c_white, 1);
