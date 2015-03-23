@@ -188,32 +188,30 @@ playerTookDmg = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>playerGainSpeed = 0.4;
-playerTopSpeed  = 2;
-global.playerMoving = 0;
+            <string>
 
 //-------MOVEMENT----------------
 //keyboard check for input
 if keyboard_check(ord("A")) {
-    hspeed -= playerGainSpeed;
-    global.playerMoving = 1;
+    hspeed -= global.playerGainSpeed;
+    global.playerMoving = global.playerMoveSpeed;
 }
 if keyboard_check(ord("D")) {
-    hspeed += playerGainSpeed;
-    global.playerMoving = 1;
+    hspeed += global.playerGainSpeed;
+    global.playerMoving = global.playerMoveSpeed;
 }
 if keyboard_check(ord("W")) {
-    vspeed -= playerGainSpeed;
-    global.playerMoving = 1;
+    vspeed -= global.playerGainSpeed;
+    global.playerMoving = global.playerMoveSpeed;
 }
 if keyboard_check(ord("S")) {
-    vspeed += playerGainSpeed;
-    global.playerMoving = 1;
+    vspeed += global.playerGainSpeed;
+    global.playerMoving = global.playerMoveSpeed;
 }
 
 //Limit player speed
-if (speed &gt; playerTopSpeed) {
-    speed = playerTopSpeed;
+if (speed &gt; global.playerTopSpeed) {
+    speed = global.playerTopSpeed;
 }
 //-------------------------------
 

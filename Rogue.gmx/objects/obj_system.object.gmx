@@ -104,6 +104,13 @@ globalvar oxygenCanDmg;
 
 //--------------------------PLAYER-------------------------------------------
 
+//-------MOVEMENT SPEED------------------
+global.playerMoveSpeed = 1;
+global.playerGainSpeed = 0.4
+global.playerTopSpeed  = 2;
+global.playerMoving = 0;
+//---------------------------------------
+
 //-------HEALTH POINTS-------------------
 globalvar playerHP;
           playerHP         = 5
@@ -117,17 +124,17 @@ globalvar playerDmgCd;
 
 //----- WEAPONS--------------------------
 global.pistol_Bullet_Speed      = 5
-global.pistol_Bullet_Dmg        = 5;
+global.pistol_Bullet_Dmg        = 3;
 global.pistol_Bullet_cd         = 20
 global.canShootPistol           = true
 
 global.rifle_Bullet_Speed       = 4
-global.rifle_Bullet_Dmg         = 1.85;
+global.rifle_Bullet_Dmg         = 0.85;
 global.rifle_Bullet_cd          = 6
 global.canShootRifle            = true
 
 global.shotgun_Bullet_Speed     = 3
-global.shotgun_Bullet_Dmg       = 2.5;
+global.shotgun_Bullet_Dmg       = 2;
 global.shotgun_Bullet_cd        = 40
 global.canShootShotgun          = true
 
@@ -139,6 +146,7 @@ global.canShootRPG              = true
 
 
 //----HAZARDS-----------------------------
+global.monster_FlashTimer       = 2;
 global.monster_Goober_hp        = 7;
 global.monster_Goober_speed     = 0.8;
 
@@ -193,15 +201,7 @@ global.monster_Burker_speed     = 1.5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(instance_number( obj_hazard) &lt; 1)
-{
-    with (instance_nearest(x, y, obj_LockedDoor)) instance_destroy();
-    with (instance_nearest(x, y, obj_LockedDoorTop)) instance_destroy();  
-    global.roomArray[global.xMapPlayer,global.yMapPlayer].cleared = true; 
-}
-
-
-if(oxygenLevel &gt; 0 &amp;&amp; roomArray[xMapPlayer, yMapPlayer].cleared == false)
+            <string>if(oxygenLevel &gt; 0 &amp;&amp; roomArray[xMapPlayer, yMapPlayer].cleared == false)
 {
     oxygenLevel -= oxygenRate;
 }
@@ -222,6 +222,14 @@ if (playerHP &lt; 1)
 {
     with(obj_player) instance_destroy()
 }
+
+if(instance_number( obj_hazard) &lt; 1)
+{
+    with (instance_nearest(x, y, obj_LockedDoor)) instance_destroy();
+    with (instance_nearest(x, y, obj_LockedDoorTop)) instance_destroy();  
+    global.roomArray[global.xMapPlayer,global.yMapPlayer].cleared = true; 
+}
+
 
 
 

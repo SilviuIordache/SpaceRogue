@@ -1,11 +1,12 @@
 //------CLEAR available with 0s--------------------
 for (i = 0; i < roomArrayW; i ++) {
     for (j = 0; j < roomArrayW; j ++) {
-        roomArray[i, j].available = 0;
-        roomArray[i, j].doorLayout = 0;
-        roomArray[i, j].roomLayout = "";
-        roomArray[i, j].cleared = false;
+        roomArray[i, j].available      = 0;
+        roomArray[i, j].doorLayout     = 0;
+        roomArray[i, j].roomLayout     = "";
         roomArray[i, j].nearUnexplored = false;
+        roomArray[i, j].cleared        = false;
+        
     }
 }
 //---------------------------------------

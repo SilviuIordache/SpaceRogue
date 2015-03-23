@@ -28,7 +28,6 @@
             <string>direction  = irandom(360)
 speed      = 1;
 hp         = 3
-canTakeDmg = 1;
 tookDmg    = 0;
 
 
@@ -60,29 +59,6 @@ tookDmg    = 0;
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>canTakeDmg = 1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="4" ename="obj_bullet">
       <action>
         <libid>1</libid>
@@ -100,15 +76,10 @@ tookDmg    = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if( canTakeDmg == 1)
-{
-    hp -= other.dmg;
-    canTakeDmg = 0;
-    alarm[0] = 8; //cooldown after dmg
-    tookDmg = 1
-    alarm[1] = 2; // damaged quick visual feedback
-}
-
+            <string>with (other) { instance_destroy()}
+hp -= other.dmg;
+tookDmg = 1
+alarm[1] = global.monster_FlashTimer; // damaged quick visual feedback
 
 if(hp &lt; 1)
 {
@@ -138,32 +109,6 @@ if(hp &lt; 1)
             <kind>1</kind>
             <string>move_bounce_all( false );
 direction+= irandom(30)
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="4">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (global.roomArray[global.xMapPlayer,global.yMapPlayer].cleared == true )
-{
-   instance_destroy();
-}
 </string>
           </argument>
         </arguments>

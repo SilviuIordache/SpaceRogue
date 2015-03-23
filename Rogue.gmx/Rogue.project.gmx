@@ -51,18 +51,21 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <script>scripts\scr_GenerateDungeon.gml</script>
     <script>scripts\pathConnect.gml</script>
-    <script>scripts\addSecondaryRooms.gml</script>
-    <script>scripts\drawMiniMap.gml</script>
     <script>scripts\setDoorLayout.gml</script>
     <script>scripts\setRoomLayout.gml</script>
-    <script>scripts\scr_GenerateDungeon.gml</script>
+    <script>scripts\addSecondaryRooms.gml</script>
+    <script>scripts\drawMiniMap.gml</script>
     <script>scripts\scr_placeDoors.gml</script>
-    <script>scripts\drawSquareAt.gml</script>
     <script>scripts\scr_buildDoors.gml</script>
+    <script>scripts\drawSquareAt.gml</script>
     <script>scripts\scr_markNearUnexplored.gml</script>
     <script>scripts\scr_resetPlayer.gml</script>
     <script>scripts\scr_drawHearts.gml</script>
+    <scripts name="monsters">
+      <script>scripts\scr_monsterSpawner.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="other">
@@ -95,7 +98,9 @@
     <objects name="monster">
       <object>objects\obj_hazard</object>
       <object>objects\obj_monster</object>
+      <object>objects\obj_BurkerSp</object>
       <object>objects\obj_Burker</object>
+      <object>objects\obj_GooberSP</object>
       <object>objects\obj_Goober</object>
     </objects>
   </objects>
@@ -104,8 +109,9 @@
       <room>rooms\rm_MENU</room>
     </rooms>
     <rooms name="_Test">
-      <room>rooms\rm_test_02</room>
       <room>rooms\rm_test</room>
+      <room>rooms\rm_test_02</room>
+      <room>rooms\rm_test_03</room>
     </rooms>
     <rooms name="RM_1">
       <room>rooms\rm_1_1</room>

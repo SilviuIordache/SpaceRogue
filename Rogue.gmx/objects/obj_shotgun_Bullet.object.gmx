@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 speed = global.shotgun_Bullet_Speed;
-dmg = global.RPG_Bullet_Dmg;
+dmg = global.shotgun_Bullet_Dmg;
 
 </string>
           </argument>
