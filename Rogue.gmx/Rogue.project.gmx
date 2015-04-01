@@ -51,20 +51,26 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scr_GenerateDungeon.gml</script>
-    <script>scripts\pathConnect.gml</script>
-    <script>scripts\setDoorLayout.gml</script>
-    <script>scripts\setRoomLayout.gml</script>
-    <script>scripts\addSecondaryRooms.gml</script>
-    <script>scripts\drawMiniMap.gml</script>
-    <script>scripts\scr_placeDoors.gml</script>
-    <script>scripts\scr_buildDoors.gml</script>
-    <script>scripts\drawSquareAt.gml</script>
-    <script>scripts\scr_markNearUnexplored.gml</script>
-    <script>scripts\scr_resetPlayer.gml</script>
-    <script>scripts\scr_drawHearts.gml</script>
-    <scripts name="monsters">
+    <scripts name="scr_General">
+      <script>scripts\scr_resetPlayer.gml</script>
+    </scripts>
+    <scripts name="scr_Monsters">
       <script>scripts\scr_monsterSpawner.gml</script>
+    </scripts>
+    <scripts name="scr_GUI">
+      <script>scripts\scr_drawMiniMap.gml</script>
+      <script>scripts\scr_drawHearts.gml</script>
+      <script>scripts\scr_drawSquareAt.gml</script>
+    </scripts>
+    <scripts name="scr_DungeonGeneration">
+      <script>scripts\scr_GenerateDungeon.gml</script>
+      <script>scripts\scr_pathConnect.gml</script>
+      <script>scripts\scr_setDoorLayout.gml</script>
+      <script>scripts\scr_setRoomLayout.gml</script>
+      <script>scripts\scr_addSecondaryRooms.gml</script>
+      <script>scripts\scr_placeDoors.gml</script>
+      <script>scripts\scr_buildDoors.gml</script>
+      <script>scripts\scr_markNearUnexplored.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -175,8 +181,8 @@
     </rooms>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">42081.6637162731</constant>
-    <constant name="GM_version">'1.0.0.0'</constant>
+    <constant name="GM_build_date">42095.6821435648</constant>
+    <constant name="GM_version">'1.0.0.2'</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

@@ -44,5 +44,5 @@ else {
           }//end for
           nextDirection *= -1;
     }// end else
-    script_execute(pathConnect, xCurrent, yCurrent, xGridFinish, yGridFinish);
+    script_execute(scr_pathConnect, xCurrent, yCurrent, xGridFinish, yGridFinish);
 }

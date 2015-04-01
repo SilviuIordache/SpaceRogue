@@ -6,10 +6,10 @@ for (i = 0; i < roomArrayW; i ++) {
         roomArray[i, j].roomLayout     = "";
         roomArray[i, j].nearUnexplored = false;
         roomArray[i, j].cleared        = false;
-        
     }
 }
-//---------------------------------------
+//-------------------------------------------------
+
 
 //-----BORDER WITH -3s-------------------------------------------
 for (i = 0; i < roomArrayW; i ++) { // border the grid with 3s
@@ -18,11 +18,10 @@ for (i = 0; i < roomArrayW; i ++) { // border the grid with 3s
     roomArray[i, 0].available               = -3;
     roomArray[i, roomArrayH - 1].available  = -3;
 }
-
 //---------------------------------------------------------------
 
 
-//-----------------GENERATE RANDOM ROOM VARIABLES-------------------------
+//-----------------GENERATE RANDOM ROOM VARIABLES-----------------------------------------
 xArrayStart  = irandom(roomArrayH - 3) + 1;
 yArrayStart  = irandom(roomArrayH - 3) + 1;
 xArrayFinish = irandom(roomArrayH - 3) + 1;
@@ -36,13 +35,16 @@ yDistance = yArrayStart - xArrayFinish; // HORIZONTAL difference between Start a
 sign_xDistance = sign(xDistance);
 sign_yDistance = sign(yDistance);
 
+roomArray[xArrayStart, yArrayStart].cleared = true;
+
 roomArray[xArrayStart, yArrayStart].available  = 4;  // Mark START  with available = 4
 roomArray[xArrayFinish, xArrayFinish].available  = 9;// Mark FINISH with available = 9
-//-------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 
-//-----------------EXECUTE SCRIPTS-------------------------------------------------
-script_execute(pathConnect, xArrayStart, yArrayStart, xArrayFinish, xArrayFinish);
-script_execute(addSecondaryRooms);
-script_execute(setDoorLayout);
+
+//-----------------EXECUTE SCRIPTS-----------------------------------------------------
+script_execute(scr_pathConnect, xArrayStart, yArrayStart, xArrayFinish, xArrayFinish);
+script_execute(scr_addSecondaryRooms);
+script_execute(scr_setDoorLayout);
 //script_execute(setRoomLayout);
-//---------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
