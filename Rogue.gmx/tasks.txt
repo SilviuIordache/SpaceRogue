@@ -1,7 +1,4 @@
 -----TO DO--------------------------------------------------------------------------------------------------------------------------------------------
-
-[0] make the game frame independent, delta time
-[0] make variable and implement in all for PAUSE
 [0] implement weapon unlocking system: GUN -> room 0, RIFLE -> rooms 4-8, SHOTGUN -> rooms +5-9, RPG -> rooms +6-10
 [0] basic walk animations for player & monsters
 [0] fix RPG into land mine launcher
@@ -18,12 +15,14 @@
 
 
 -----IN PROGRESS-------------------------------------------------------------------------------------------------------------------------------------
-[0] fix starting room, when pressing R, it should lead to an empty room
+[0] make the game frame independent, delta time
+[0] make variable and implement in all for PAUSE
 [0] add rooms with no enemies in it
 [0] add a 15% to drop a HP from a monsters
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -----DONE----------------------------------------------------------------------------------------------------------------------------------------------
+[0] fix starting room, when pressing R, it should lead to an empty room
 [0] try to remove enemies invulnerable time by holding all the collision events in a single object
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 

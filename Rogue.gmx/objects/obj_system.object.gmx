@@ -45,7 +45,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//OTHER VARIABLES-----------------------------------------
+            <string>//------------SEED VARIABLES-----------------------------
 randomize(); // randomize with different seed each time
 //--------------------------------------------------------
 
@@ -88,18 +88,10 @@ for (i = 0; i &lt; roomArrayW; i++)
 script_execute(scr_GenerateDungeon);
 //--------------------------------------------------------------------------
 
+//-----------------DELTA TIME------------------------------------------------
+globalvar delta;
 
-//-----OXYGEN----------------------------------------------------------------
-globalvar oxygenLevel;
-          oxygenLevel        = 100;
-globalvar oxygenLevelInitial;
-          oxygenLevelInitial = oxygenLevel;          
-globalvar oxygenRate;
-          oxygenRate         = 0.1;
-globalvar oxygenCanDmg;
-          oxygenCanDmg       = true;
 //---------------------------------------------------------------------------
-
 
 
 //--------------------------PLAYER-------------------------------------------
@@ -143,6 +135,20 @@ global.RPG_Bullet_cd            = 100;
 global.canShootRPG              = true
 //---------------------------------------- 
 //---------------------------------------------------------------------------
+
+
+
+//-----OXYGEN----------------------------------------------------------------
+globalvar oxygenLevel;
+          oxygenLevel        = 100;
+globalvar oxygenLevelInitial;
+          oxygenLevelInitial = oxygenLevel;          
+globalvar oxygenRate;
+          oxygenRate         = 0.1;
+globalvar oxygenCanDmg;
+          oxygenCanDmg       = true;
+//---------------------------------------------------------------------------
+
 
 
 //----HAZARDS----------------------------------------------------------------
@@ -209,7 +215,9 @@ drawNothing    = true
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(oxygenLevel &gt; 0 &amp;&amp; roomArray[xMapPlayer, yMapPlayer].cleared == false)
+            <string>delta = fps/ 1000000 * delta_time;
+
+if(oxygenLevel &gt; 0 &amp;&amp; roomArray[xMapPlayer, yMapPlayer].cleared == false)
 {
     oxygenLevel -= oxygenRate;
 }
@@ -418,7 +426,7 @@ if(asset_get_index(room_get_name(room)) != rm_MENU)
 }
 draw_sprite(spr_reticle, image_index, mouse_x, mouse_y);
 
-draw_text(100, 130, fps_real);
+draw_text(100, 130, string(delta));
 
 
 </string>

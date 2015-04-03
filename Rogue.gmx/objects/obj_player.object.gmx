@@ -193,19 +193,19 @@ playerTookDmg = false;
 //-------MOVEMENT----------------
 //keyboard check for input
 if keyboard_check(ord("A")) {
-    hspeed -= global.playerGainSpeed;
+    hspeed -= global.playerGainSpeed * delta;
     global.playerMoving = global.playerMoveSpeed;
 }
 if keyboard_check(ord("D")) {
-    hspeed += global.playerGainSpeed;
+    hspeed += global.playerGainSpeed * delta;
     global.playerMoving = global.playerMoveSpeed;
 }
 if keyboard_check(ord("W")) {
-    vspeed -= global.playerGainSpeed;
+    vspeed -= global.playerGainSpeed * delta
     global.playerMoving = global.playerMoveSpeed;
 }
 if keyboard_check(ord("S")) {
-    vspeed += global.playerGainSpeed;
+    vspeed += global.playerGainSpeed * delta;
     global.playerMoving = global.playerMoveSpeed;
 }
 
