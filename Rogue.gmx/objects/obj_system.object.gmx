@@ -49,6 +49,19 @@
 randomize(); // randomize with different seed each time
 //--------------------------------------------------------
 
+//------PAUSE------------
+globalvar pauseVariable;
+          pauseVariable = 1;
+globalvar pause;
+          pause = 1;
+//-----------------------
+
+//-----STOP WEAPON ROTATION DRAW IN PAUSE VARIABLES------
+globalvar lastMouseX;
+          lastMouseX = 0;
+globalvar lastMouseY;
+          lastMouseY = 0;
+//--------------------------------------------------
 
 //-----------ROOM PATH GENERATION VARIABLES----------------------------------------------------------
 globalvar xArrayStart, yArrayStart, xArrayFinish, xArrayFinish; // start and finish room positions
@@ -90,12 +103,11 @@ script_execute(scr_GenerateDungeon);
 
 //-----------------DELTA TIME------------------------------------------------
 globalvar delta;
-
+          delta = 1
 //---------------------------------------------------------------------------
 
 
 //--------------------------PLAYER-------------------------------------------
-
 //-------MOVEMENT SPEED------------------
 global.playerMoveSpeed = 1;
 global.playerGainSpeed = 0.4
@@ -110,7 +122,6 @@ globalvar playerCanTakeDmg;
           playerCanTakeDmg = true
 globalvar playerDmgCd;
           playerDmgCd      = 60;
-
 //---------------------------------------
 
 //----- WEAPONS--------------------------
@@ -174,7 +185,7 @@ drawNothing    = true
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="0">
+    <event eventtype="3" enumb="1">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -191,8 +202,7 @@ drawNothing    = true
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>    oxygenCanDmg = true;
-
+            <string>delta = 60/ 1000000 * delta_time;
 </string>
           </argument>
         </arguments>
@@ -215,20 +225,11 @@ drawNothing    = true
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>delta = fps/ 1000000 * delta_time;
-
-if(oxygenLevel &gt; 0 &amp;&amp; roomArray[xMapPlayer, yMapPlayer].cleared == false)
+            <string>if(pause == 1)
 {
-    oxygenLevel -= oxygenRate;
+    lastMouseX = mouse_x;
+    lastMouseY = mouse_y;
 }
-
-if(oxygenLevel &lt; 1 &amp;&amp; oxygenCanDmg == true)
-{
-    oxygenCanDmg = false;
-    playerHP -=1
-    alarm[0] = 120;
-}
-
 if (roomArray[xMapPlayer, yMapPlayer].cleared == true)
 {
     oxygenLevel = oxygenLevelInitial;
@@ -418,7 +419,6 @@ if(asset_get_index(room_get_name(room)) != rm_MENU)
 
 
 
-
 //Does not draw the following in the Main Menu room
 if(asset_get_index(room_get_name(room)) != rm_MENU)
 {
@@ -426,8 +426,12 @@ if(asset_get_index(room_get_name(room)) != rm_MENU)
 }
 draw_sprite(spr_reticle, image_index, mouse_x, mouse_y);
 
-draw_text(100, 130, string(delta));
 
+
+if(pause == 0)
+{
+     draw_sprite(spr_pause, image_index, 120, 130);
+}
 
 </string>
           </argument>
@@ -479,6 +483,33 @@ room_goto(room);
 script_execute(scr_placeDoors);
 script_execute(scr_markNearUnexplored, xMapPlayer, yMapPlayer)
 script_execute(scr_resetPlayer);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="80">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>pauseVariable *= -1;
+
+pause = (1 + pauseVariable) / 2
+
+
 </string>
           </argument>
         </arguments>
