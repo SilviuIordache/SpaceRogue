@@ -73,6 +73,10 @@
       <script>scripts\scr_buildDoors.gml</script>
       <script>scripts\scr_markNearUnexplored.gml</script>
     </scripts>
+    <scripts name="scr_player">
+      <script>scripts\scr_screenShaker.gml</script>
+      <script>scripts\scr_playerKnockBack.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="other">
@@ -80,6 +84,7 @@
       <object>objects\obj_room</object>
       <object>objects\obj_buttonStart</object>
       <object>objects\obj_transparent</object>
+      <object>objects\obj_shaker</object>
     </objects>
     <objects name="environment">
       <object>objects\obj_block</object>
