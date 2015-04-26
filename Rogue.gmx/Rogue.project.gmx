@@ -49,6 +49,9 @@
   </sprites>
   <backgrounds name="background">
     <background>background\ts_floor</background>
+    <background>background\ts_floor04</background>
+    <background>background\ts_floor02</background>
+    <background>background\ts_floor03</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -116,6 +119,7 @@
       <object>objects\obj_Goober</object>
     </objects>
   </objects>
+  <timelines name="timelines"/>
   <rooms name="rooms">
     <rooms name="_SYS_ROOMS">
       <room>rooms\rm_MENU</room>

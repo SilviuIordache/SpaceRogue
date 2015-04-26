@@ -1,5 +1,5 @@
 depth = - 5000;
-draw_set_alpha(0.5);
+draw_set_alpha(0.35);
 draw_rectangle_colour(1, 1, 50, 50, c_white, c_white, c_white, c_white, false); // minimap white bck
 draw_set_alpha(1);
 
@@ -17,18 +17,13 @@ for (i = 0; i < roomArrayW; i++)
         {
             script_execute(scr_drawSquareAt, i, j, c_white)
         }
-        if (roomArray[i,j].cleared == true)
+        if (roomArray[i,j].cleared        == true && 
+            roomArray[i,j].nearUnexplored == true && 
+            roomArray[i,j].available      !=  0    && 
+            roomArray[i,j].available      != -3 )
         {
             script_execute(scr_drawSquareAt, i, j, c_green)
-        }
-        /*
-        o = roomArray[i,j].available;
-        else if (o == 1 ||  o == 4 || o == 9 || o == 2)
-        {
-            script_execute(scr_drawSquareAt, i, j, c_orange)
-        }
-        */
-        
+        }    
     }
 }
 

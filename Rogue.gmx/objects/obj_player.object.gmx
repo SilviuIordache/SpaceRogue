@@ -222,7 +222,7 @@ if(pause == 1)
 if(currentWeapon == 1 &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; global.canShootPistol)
 {
   
-    script_execute(scr_playerKnockBack, 2);
+    script_execute(scr_playerKnockBack, 0.3);
     script_execute(scr_screenShaker, 0.2, 5); //Intensity, Duration
     global.canShootPistol = false;
     instance_create(obj_player.x + 11, obj_player.y + 10, obj_pistol_Bullet);
@@ -230,7 +230,7 @@ if(currentWeapon == 1 &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; 
 }
 if(currentWeapon == 2 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootRifle )
 {
-    script_execute(scr_playerKnockBack, 0.5);
+    script_execute(scr_playerKnockBack, 0.1);
     script_execute(scr_screenShaker, 0.1, 5); //Intensity, Duration
     global.canShootRifle = false;
     instance_create(obj_player.x + 11, obj_player.y + 10, obj_rifle_Bullet);
@@ -238,7 +238,7 @@ if(currentWeapon == 2 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.c
 }
 if(currentWeapon == 3 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootShotgun)
 {
-    script_execute(scr_playerKnockBack, 3);
+    script_execute(scr_playerKnockBack, 0.5);
     script_execute(scr_screenShaker, 0.4, 5); //Intensity, Duration
     global.canShootShotgun = false;
     instance_create(obj_player.x + 11, obj_player.y + 10, obj_shotgun_Bullet);
@@ -251,7 +251,7 @@ if(currentWeapon == 3 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.c
 }
 if(currentWeapon == 4 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootRPG)
 {
-    script_execute(scr_playerKnockBack, 4);
+    script_execute(scr_playerKnockBack, 0.7);
     script_execute(scr_screenShaker, 0.1, 5); //Intensity, Duration
     global.canShootRPG = false;
     instance_create(obj_player.x + 11, obj_player.y + 10, obj_RPG_Bullet);
@@ -547,6 +547,7 @@ draw_sprite_ext( spr_playerShadow, image_index, x + 12, y + 18, image_xscale, im
 
 
 //--------WEAPONS-------------------------
+depth = - 10
 if (pause == 1)
 {
     if( mouse_x &gt; obj_player.x)
@@ -589,6 +590,7 @@ else // PAUSE DRAW
          draw_sprite_ext(spr_RPG, 0, x + 12, y + 10, 1 * weaponOrientation, 1 , point_direction(x + 11, y + 11, lastMouseX, lastMouseY) + 180 * (weaponOrientation + 1) /2, c_white, 1);
     }
 }
+depth = -1;
 </string>
           </argument>
         </arguments>
