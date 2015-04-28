@@ -333,77 +333,68 @@ if( mouse_check_button(mb_right))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>nrOfRooms = 2;
-
-if(obj_player.x &lt; 17) // left
+            <string>if(obj_player.x &lt; 17) // left
 {
-/*
+
     if (roomArray[xMapPlayer - 1, yMapPlayer].roomLayout == "")
     {
         roomIndex = irandom(nrOfRooms - 1) + 1
-        roomName = string("rm_" + string(roomArray[xMapPlayer - 1, yMapPlayer].doorLayout) + "_" + string(roomIndex))
+        roomName = string("rm_normal"+string(roomIndex))
         roomArray[xMapPlayer - 1, yMapPlayer].roomLayout = roomName;
     }
     else
         roomName = roomArray[xMapPlayer - 1, yMapPlayer].roomLayout;
-       
+        
     room_goto(asset_get_index(roomName));
-    */
-    room_goto(rm_test);
     xMapPlayer -= 1;
     obj_player.x = 200;
     obj_player.y = 72;    
 }
 if(obj_player.x &gt; 200) //right
 {
-/*
+
     if (roomArray[xMapPlayer + 1, yMapPlayer].roomLayout == "")
     {
         roomIndex = irandom(nrOfRooms - 1) + 1
-        roomName = string("rm_" + string(roomArray[xMapPlayer + 1, yMapPlayer].doorLayout) + "_" + string(roomIndex));
+        roomName = string("rm_normal"+string(roomIndex))
         roomArray[xMapPlayer + 1, yMapPlayer].roomLayout = roomName;
     }
     else
         roomName = roomArray[xMapPlayer + 1, yMapPlayer].roomLayout;
+        
     room_goto(asset_get_index(roomName));
-    */
-    room_goto(rm_test);
     xMapPlayer += 1;
     obj_player.x = 12;
     obj_player.y = 72;
 }
 if(obj_player.y &lt; 17) //up
 {
-/*
     if (roomArray[xMapPlayer, yMapPlayer - 1].roomLayout == "")
     {
         roomIndex = irandom(nrOfRooms - 1) + 1
-        roomName = string("rm_" + string(roomArray[xMapPlayer, yMapPlayer - 1].doorLayout) + "_" + string(roomIndex));
+        roomName = string("rm_normal"+string(roomIndex))
         roomArray[xMapPlayer, yMapPlayer - 1].roomLayout = roomName;    
     }
     else
         roomName = roomArray[xMapPlayer, yMapPlayer - 1].roomLayout;
+        
     room_goto(asset_get_index(roomName));
-    */
-    room_goto(rm_test);
     yMapPlayer -= 1;
     obj_player.x = 112;
     obj_player.y = 140;
 }
 if(obj_player.y &gt; 140) //down
 {
-/*
     if (roomArray[xMapPlayer, yMapPlayer + 1].roomLayout == "")
     {
         roomIndex = irandom(nrOfRooms - 1) + 1
-        roomName = string("rm_" + string(roomArray[xMapPlayer, yMapPlayer + 1].doorLayout) + "_" + string(roomIndex));
+        roomName = string("rm_normal"+string(roomIndex))
         roomArray[xMapPlayer, yMapPlayer + 1].roomLayout = roomName;    
     }
     else
         roomName = roomArray[xMapPlayer, yMapPlayer + 1].roomLayout;
+        
     room_goto(asset_get_index(roomName));
-    */
-    room_goto(rm_test);
     yMapPlayer += 1;
     obj_player.x = 112;
     obj_player.y = 10;

@@ -65,6 +65,10 @@ globalvar lastMouseY;
 
 //-----------ROOM PATH GENERATION VARIABLES----------------------------------------------------------
 globalvar xArrayStart, yArrayStart, xArrayFinish, xArrayFinish; // start and finish room positions
+          xArrayStart  = 0;
+          xArrayFinish = 0;
+          yArrayStart  = 0;
+          yArrayFinish = 0;
 globalvar nextDirection; // boolean that alternates filling 1s between the x and the y axis
           nextDirection = power(-1, irandom(2));
 globalvar xDistance, yDistance; // hor and ver diff between start and finish rooms
@@ -85,6 +89,9 @@ globalvar xMapPlayer, yMapPlayer; //current player position on the minimap
 //--------2D ROOM ARRAY-----------------------------------------------------
 //roomArrayH = room_width div arrayCellSize;
 //roomArrayH = room_height div arrayCellSize; 
+
+globalvar nrOfRooms;
+          nrOfRooms = 5;
 globalvar roomArrayW;
 globalvar roomArrayH;
 roomArrayW = 10; // width  of grid in cells
@@ -456,7 +463,6 @@ if(pause == 0)
           <argument>
             <kind>1</kind>
             <string>script_execute(scr_GenerateDungeon);
-room_goto(room);
 script_execute(scr_placeDoors);
 script_execute(scr_markNearUnexplored, xMapPlayer, yMapPlayer)
 script_execute(scr_resetPlayer);

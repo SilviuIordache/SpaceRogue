@@ -27,16 +27,16 @@
             <kind>1</kind>
             <string>instance_create(112, 80, obj_player);
 
-nrOfRooms = 2;
+nrOfRooms = 5;
 
-/*
+
 roomIndex = irandom(nrOfRooms - 1) + 1
-roomName = string("rm_"+string(roomArray[xMapPlayer, yMapPlayer].doorLayout)+"_"+string(roomIndex))
+roomName = string("rm_normal"+string(roomIndex))
 roomArray[xMapPlayer, yMapPlayer].roomLayout = roomName;
-*/
 
-//room_goto(asset_get_index(roomName));
-room_goto(rm_test);
+
+room_goto(asset_get_index(roomName));
+//room_goto(rm_normal01);
 script_execute(scr_markNearUnexplored, xMapPlayer, yMapPlayer)
 
 

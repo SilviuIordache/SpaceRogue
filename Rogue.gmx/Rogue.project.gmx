@@ -55,9 +55,6 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <scripts name="scr_General">
-      <script>scripts\scr_resetPlayer.gml</script>
-    </scripts>
     <scripts name="scr_Monsters">
       <script>scripts\scr_monsterSpawner.gml</script>
     </scripts>
@@ -79,6 +76,7 @@
     <scripts name="scr_player">
       <script>scripts\scr_screenShaker.gml</script>
       <script>scripts\scr_playerKnockBack.gml</script>
+      <script>scripts\scr_resetPlayer.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -119,13 +117,16 @@
       <object>objects\obj_Goober</object>
     </objects>
   </objects>
-  <timelines name="timelines"/>
   <rooms name="rooms">
     <rooms name="_SYS_ROOMS">
       <room>rooms\rm_MENU</room>
     </rooms>
     <rooms name="_Test">
-      <room>rooms\rm_test</room>
+      <room>rooms\rm_normal1</room>
+      <room>rooms\rm_normal2</room>
+      <room>rooms\rm_normal3</room>
+      <room>rooms\rm_normal4</room>
+      <room>rooms\rm_normal5</room>
       <room>rooms\rm_test_02</room>
       <room>rooms\rm_test_03</room>
     </rooms>

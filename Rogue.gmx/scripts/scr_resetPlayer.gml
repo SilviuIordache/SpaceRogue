@@ -11,3 +11,8 @@ global.canShootPistol           = true
 global.canShootRifle            = true
 global.canShootShotgun          = true
 global.canShootRPG              = true
+
+roomIndex = irandom(nrOfRooms - 1) + 1;
+roomName = string("rm_normal"+string(roomIndex));
+room_goto(asset_get_index(roomName))
+
