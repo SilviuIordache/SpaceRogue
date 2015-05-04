@@ -35,8 +35,8 @@ roomName = string("rm_normal"+string(roomIndex))
 roomArray[xMapPlayer, yMapPlayer].roomLayout = roomName;
 
 
-room_goto(asset_get_index(roomName));
-//room_goto(rm_normal01);
+//room_goto(asset_get_index(roomName));
+room_goto(rm_normal1);
 script_execute(scr_markNearUnexplored, xMapPlayer, yMapPlayer)
 
 

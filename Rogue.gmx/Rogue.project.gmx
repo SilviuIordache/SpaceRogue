@@ -78,6 +78,9 @@
       <script>scripts\scr_playerKnockBack.gml</script>
       <script>scripts\scr_resetPlayer.gml</script>
     </scripts>
+    <scripts name="scr_Render">
+      <script>scripts\scr_drawLight.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="other">
@@ -86,6 +89,7 @@
       <object>objects\obj_buttonStart</object>
       <object>objects\obj_transparent</object>
       <object>objects\obj_shaker</object>
+      <object>objects\obj_lighting</object>
     </objects>
     <objects name="environment">
       <object>objects\obj_block</object>
@@ -129,66 +133,6 @@
       <room>rooms\rm_normal5</room>
       <room>rooms\rm_test_02</room>
       <room>rooms\rm_test_03</room>
-    </rooms>
-    <rooms name="RM_1">
-      <room>rooms\rm_1_1</room>
-      <room>rooms\rm_1_2</room>
-    </rooms>
-    <rooms name="RM_10">
-      <room>rooms\rm_10_1</room>
-      <room>rooms\rm_10_2</room>
-    </rooms>
-    <rooms name="RM_11">
-      <room>rooms\rm_11_1</room>
-      <room>rooms\rm_11_2</room>
-    </rooms>
-    <rooms name="RM_12">
-      <room>rooms\rm_12_1</room>
-      <room>rooms\rm_12_2</room>
-    </rooms>
-    <rooms name="RM_13">
-      <room>rooms\rm_13_1</room>
-      <room>rooms\rm_13_2</room>
-    </rooms>
-    <rooms name="RM_14">
-      <room>rooms\rm_14_1</room>
-      <room>rooms\rm_14_2</room>
-    </rooms>
-    <rooms name="RM_15">
-      <room>rooms\rm_15_1</room>
-      <room>rooms\rm_15_2</room>
-    </rooms>
-    <rooms name="RM_2">
-      <room>rooms\rm_2_1</room>
-      <room>rooms\rm_2_2</room>
-    </rooms>
-    <rooms name="RM_3">
-      <room>rooms\rm_3_1</room>
-      <room>rooms\rm_3_2</room>
-    </rooms>
-    <rooms name="RM_4">
-      <room>rooms\rm_4_1</room>
-      <room>rooms\rm_4_2</room>
-    </rooms>
-    <rooms name="RM_5">
-      <room>rooms\rm_5_1</room>
-      <room>rooms\rm_5_2</room>
-    </rooms>
-    <rooms name="RM_6">
-      <room>rooms\rm_6_1</room>
-      <room>rooms\rm_6_2</room>
-    </rooms>
-    <rooms name="RM_7">
-      <room>rooms\rm_7_1</room>
-      <room>rooms\rm_7_2</room>
-    </rooms>
-    <rooms name="RM_8">
-      <room>rooms\rm_8_1</room>
-      <room>rooms\rm_8_2</room>
-    </rooms>
-    <rooms name="RM_9">
-      <room>rooms\rm_9_1</room>
-      <room>rooms\rm_9_2</room>
     </rooms>
   </rooms>
   <constants number="2">

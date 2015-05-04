@@ -49,6 +49,11 @@
 randomize(); // randomize with different seed each time
 //--------------------------------------------------------
 
+//------SURFACE---------------------------------------
+global.light = surface_create(room_width,room_height);
+//----------------------------------------------------
+
+
 //------PAUSE------------
 globalvar pauseVariable;
           pauseVariable = 1;
@@ -180,6 +185,9 @@ global.monster_Burker_speed     = 1.5;
 
 
 //--------DEBUG--------------------------------------------------------------
+
+canDrawFPS = true;
+
 drawAvailable  = false
 drawDoorLayout = false
 drawRoomLayout = false
@@ -187,6 +195,29 @@ drawCleared    = false
 drawUnexplored = false
 drawNothing    = true
 //---------------------------------------------------------------------------
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>canDrawFPS = true
 </string>
           </argument>
         </arguments>
@@ -361,7 +392,17 @@ with(obj_player) instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>//-----DEBUG DRAW FPS---------------------------
+if (canDrawFPS)
+{
+    canDrawFPS = false;
+    alarm[0] = 20;
+    fpsDRAW = fps_real;  
+}
+draw_text(20, 205, string(ceil(fpsDRAW)))
+//-----------------------------------------------
+
+
 depth = -1000
 ww = window_get_width()
 wh = window_get_height()
@@ -397,11 +438,14 @@ if(asset_get_index(room_get_name(room)) != rm_MENU)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Debug Drawd
-//draw_text(100, 100, room_get_name(0));
-//nrOfMonster = string(instance_number(obj_monster))
+            <string>//-----LIGHT------------------------------
 
-
+scr_drawLight(room_width  / 2, //xPos
+              room_height / 2, //yPos
+              120,             //Radius
+              80,              //Precision
+              3);             //Intensity (0 = weak -&gt;255: strong)
+//----------------------------------------
 
 //Does not draw the following in the Main Menu room
 if(asset_get_index(room_get_name(room)) != rm_MENU)
@@ -409,7 +453,6 @@ if(asset_get_index(room_get_name(room)) != rm_MENU)
     script_execute(scr_drawMiniMap);
 }
 draw_sprite(spr_reticle, image_index, mouse_x, mouse_y);
-
 
 
 if(pause == 0)

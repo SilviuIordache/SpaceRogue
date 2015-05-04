@@ -233,7 +233,7 @@ if(currentWeapon == 2 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.c
     script_execute(scr_playerKnockBack, 0.1);
     script_execute(scr_screenShaker, 0.1, 5); //Intensity, Duration
     global.canShootRifle = false;
-    instance_create(obj_player.x + 11, obj_player.y + 10, obj_rifle_Bullet);
+    with(instance_create(obj_player.x + 11, obj_player.y + 10, obj_rifle_Bullet)) direction += irandom_range(-3, +3);
     alarm[2] = global.rifle_Bullet_cd;
 }
 if(currentWeapon == 3 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootShotgun)
@@ -535,6 +535,14 @@ else
 depth = -1
 draw_sprite_ext( spr_playerShadow, image_index, x + 12, y + 18, image_xscale, image_yscale, image_angle, image_blend, 0.2 );
 //-----------------------------------------------------------------------------------------------
+
+//-----LIGHT------------------------------
+scr_drawLight(x + 12, //xPos
+              y + 8, //yPos
+              20,             //Radius
+              10,              //Precision
+              5);             //Intensity (0 = weak -&gt;255: strong)
+//----------------------------------------
 
 
 //--------WEAPONS-------------------------
