@@ -222,7 +222,7 @@ if(pause == 1)
 if(currentWeapon == 1 &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; global.canShootPistol)
 {
   
-    script_execute(scr_playerKnockBack, 2);
+    script_execute(scr_playerKnockBack, 0.3);
     script_execute(scr_screenShaker, 0.2, 5); //Intensity, Duration
     global.canShootPistol = false;
     instance_create(obj_player.x + 11, obj_player.y + 10, obj_pistol_Bullet);
@@ -230,15 +230,15 @@ if(currentWeapon == 1 &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; 
 }
 if(currentWeapon == 2 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootRifle )
 {
-    script_execute(scr_playerKnockBack, 0.5);
+    script_execute(scr_playerKnockBack, 0.1);
     script_execute(scr_screenShaker, 0.1, 5); //Intensity, Duration
     global.canShootRifle = false;
-    instance_create(obj_player.x + 11, obj_player.y + 10, obj_rifle_Bullet);
+    with(instance_create(obj_player.x + 11, obj_player.y + 10, obj_rifle_Bullet)) direction += irandom_range(-3, +3);
     alarm[2] = global.rifle_Bullet_cd;
 }
 if(currentWeapon == 3 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootShotgun)
 {
-    script_execute(scr_playerKnockBack, 3);
+    script_execute(scr_playerKnockBack, 0.5);
     script_execute(scr_screenShaker, 0.4, 5); //Intensity, Duration
     global.canShootShotgun = false;
     instance_create(obj_player.x + 11, obj_player.y + 10, obj_shotgun_Bullet);
@@ -251,7 +251,7 @@ if(currentWeapon == 3 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.c
 }
 if(currentWeapon == 4 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootRPG)
 {
-    script_execute(scr_playerKnockBack, 4);
+    script_execute(scr_playerKnockBack, 0.7);
     script_execute(scr_screenShaker, 0.1, 5); //Intensity, Duration
     global.canShootRPG = false;
     instance_create(obj_player.x + 11, obj_player.y + 10, obj_RPG_Bullet);
@@ -333,77 +333,68 @@ if( mouse_check_button(mb_right))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>nrOfRooms = 2;
-
-if(obj_player.x &lt; 17) // left
+            <string>if(obj_player.x &lt; 17) // left
 {
-/*
+
     if (roomArray[xMapPlayer - 1, yMapPlayer].roomLayout == "")
     {
         roomIndex = irandom(nrOfRooms - 1) + 1
-        roomName = string("rm_" + string(roomArray[xMapPlayer - 1, yMapPlayer].doorLayout) + "_" + string(roomIndex))
+        roomName = string("rm_normal"+string(roomIndex))
         roomArray[xMapPlayer - 1, yMapPlayer].roomLayout = roomName;
     }
     else
         roomName = roomArray[xMapPlayer - 1, yMapPlayer].roomLayout;
-       
+        
     room_goto(asset_get_index(roomName));
-    */
-    room_goto(rm_test);
     xMapPlayer -= 1;
     obj_player.x = 200;
     obj_player.y = 72;    
 }
 if(obj_player.x &gt; 200) //right
 {
-/*
+
     if (roomArray[xMapPlayer + 1, yMapPlayer].roomLayout == "")
     {
         roomIndex = irandom(nrOfRooms - 1) + 1
-        roomName = string("rm_" + string(roomArray[xMapPlayer + 1, yMapPlayer].doorLayout) + "_" + string(roomIndex));
+        roomName = string("rm_normal"+string(roomIndex))
         roomArray[xMapPlayer + 1, yMapPlayer].roomLayout = roomName;
     }
     else
         roomName = roomArray[xMapPlayer + 1, yMapPlayer].roomLayout;
+        
     room_goto(asset_get_index(roomName));
-    */
-    room_goto(rm_test);
     xMapPlayer += 1;
     obj_player.x = 12;
     obj_player.y = 72;
 }
 if(obj_player.y &lt; 17) //up
 {
-/*
     if (roomArray[xMapPlayer, yMapPlayer - 1].roomLayout == "")
     {
         roomIndex = irandom(nrOfRooms - 1) + 1
-        roomName = string("rm_" + string(roomArray[xMapPlayer, yMapPlayer - 1].doorLayout) + "_" + string(roomIndex));
+        roomName = string("rm_normal"+string(roomIndex))
         roomArray[xMapPlayer, yMapPlayer - 1].roomLayout = roomName;    
     }
     else
         roomName = roomArray[xMapPlayer, yMapPlayer - 1].roomLayout;
+        
     room_goto(asset_get_index(roomName));
-    */
-    room_goto(rm_test);
     yMapPlayer -= 1;
     obj_player.x = 112;
     obj_player.y = 140;
 }
 if(obj_player.y &gt; 140) //down
 {
-/*
     if (roomArray[xMapPlayer, yMapPlayer + 1].roomLayout == "")
     {
         roomIndex = irandom(nrOfRooms - 1) + 1
-        roomName = string("rm_" + string(roomArray[xMapPlayer, yMapPlayer + 1].doorLayout) + "_" + string(roomIndex));
+        roomName = string("rm_normal"+string(roomIndex))
         roomArray[xMapPlayer, yMapPlayer + 1].roomLayout = roomName;    
     }
     else
         roomName = roomArray[xMapPlayer, yMapPlayer + 1].roomLayout;
+        
     room_goto(asset_get_index(roomName));
-    */
-    room_goto(rm_test);
     yMapPlayer += 1;
     obj_player.x = 112;
     obj_player.y = 10;
@@ -545,8 +536,17 @@ depth = -1
 draw_sprite_ext( spr_playerShadow, image_index, x + 12, y + 18, image_xscale, image_yscale, image_angle, image_blend, 0.2 );
 //-----------------------------------------------------------------------------------------------
 
+//-----LIGHT------------------------------
+scr_drawLight(x + 12, //xPos
+              y + 8, //yPos
+              20,             //Radius
+              10,              //Precision
+              5);             //Intensity (0 = weak -&gt;255: strong)
+//----------------------------------------
+
 
 //--------WEAPONS-------------------------
+depth = - 10
 if (pause == 1)
 {
     if( mouse_x &gt; obj_player.x)
@@ -589,6 +589,7 @@ else // PAUSE DRAW
          draw_sprite_ext(spr_RPG, 0, x + 12, y + 10, 1 * weaponOrientation, 1 , point_direction(x + 11, y + 11, lastMouseX, lastMouseY) + 180 * (weaponOrientation + 1) /2, c_white, 1);
     }
 }
+depth = -1;
 </string>
           </argument>
         </arguments>

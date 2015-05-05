@@ -1,3 +1,4 @@
+randomize(); 
 //------CLEAR available with 0s--------------------
 for (i = 0; i < roomArrayW; i ++) {
     for (j = 0; j < roomArrayW; j ++) {
@@ -5,7 +6,11 @@ for (i = 0; i < roomArrayW; i ++) {
         roomArray[i, j].doorLayout     = 0;
         roomArray[i, j].roomLayout     = "";
         roomArray[i, j].nearUnexplored = false;
-        roomArray[i, j].cleared        = false;
+        
+        // make some rooms not contain any monsters
+        hasHazardsVar = irandom(100);
+        if (hasHazardsVar < 20) roomArray[i, j].cleared = true;
+        else                   roomArray[i, j].cleared = false;
     }
 }
 //-------------------------------------------------
@@ -22,10 +27,16 @@ for (i = 0; i < roomArrayW; i ++) { // border the grid with 3s
 
 
 //-----------------GENERATE RANDOM ROOM VARIABLES-----------------------------------------
-xArrayStart  = irandom(roomArrayH - 3) + 1;
-yArrayStart  = irandom(roomArrayH - 3) + 1;
-xArrayFinish = irandom(roomArrayH - 3) + 1;
-xArrayFinish = irandom(roomArrayH - 3) + 1;
+xArrayStart  = 0;
+xArrayFinish = 0;
+yArrayStart  = 0;
+yArrayFinish = 0;
+
+    xArrayStart  = irandom(roomArrayH - 3) + 1;
+    yArrayStart  = irandom(roomArrayH - 3) + 1;
+    xArrayFinish = irandom(roomArrayH - 3) + 1;
+    xArrayFinish = irandom(roomArrayH - 3) + 1;
+
 xMapPlayer = xArrayStart;
 yMapPlayer = yArrayStart;
 
@@ -36,7 +47,6 @@ sign_xDistance = sign(xDistance);
 sign_yDistance = sign(yDistance);
 
 roomArray[xArrayStart, yArrayStart].cleared = true;
-
 roomArray[xArrayStart, yArrayStart].available  = 4;  // Mark START  with available = 4
 roomArray[xArrayFinish, xArrayFinish].available  = 9;// Mark FINISH with available = 9
 //----------------------------------------------------------------------------------------

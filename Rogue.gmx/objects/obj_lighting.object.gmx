@@ -4,8 +4,8 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
-  <parentName>obj_transparent</parentName>
+  <persistent>-1</persistent>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,27 +25,67 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>direction = point_direction(obj_player.x + 11, obj_player.y + 11, mouse_x, mouse_y);
-image_angle = point_direction(x, y, mouse_x, mouse_y); 
+            <string>globalvar lightSurface;
+          lightSurface = surface_create(room_width, room_height);
+depth = - 1000;
+col = make_colour_hsv(0, 0, 200);
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_block">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
-        <id>203</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_kill_object</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>  surface_set_target(lightSurface);
+
+  draw_set_color(col)
+  draw_rectangle(0, 0, room_width, room_height, false)
+  surface_reset_target();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//DESTROY THE SURFACE
+if(surface_exists(lightSurface))
+{
+    surface_free(lightSurface);
+}
+</string>
+          </argument>
+        </arguments>
       </action>
     </event>
     <event eventtype="8" enumb="0">
@@ -65,15 +105,9 @@ image_angle = point_direction(x, y, mouse_x, mouse_y);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
-
-//-----LIGHT------------------------------
-scr_drawLight(x, //xPos
-              y, //yPos
-              5,             //Radius
-              5,              //Precision
-              5);             //Intensity (0 = weak -&gt;255: strong)
-//----------------------------------------
+            <string>draw_set_blend_mode(bm_subtract);
+draw_surface(lightSurface, 0, 0);
+draw_set_blend_mode(bm_normal);
 </string>
           </argument>
         </arguments>

@@ -30,6 +30,7 @@ doorLayout     = 0; // 1 -&gt; 15
 roomLayout     = ""; // which version of the room is loaded
 cleared        = false;
 nearUnexplored = false;
+hasHazards     = false;
 </string>
           </argument>
         </arguments>
