@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>friction = 0.3;
+            <string>friction = global.playerFrictionFactor;
 currentWeapon = 1; //1 = Pistol ;; 2 = Assault ;; 3 = Shotgun ;; 4 = Rocket
 playerTookDmg = false;
 </string>

@@ -121,15 +121,16 @@ globalvar delta;
 
 //--------------------------PLAYER-------------------------------------------
 //-------MOVEMENT SPEED------------------
-global.playerMoveSpeed = 1;
-global.playerGainSpeed = 0.4
-global.playerTopSpeed  = 2;
+global.playerMoveSpeed = 0;
+global.playerFrictionFactor = 0.15;
+global.playerGainSpeed = 0.3;
+global.playerTopSpeed  = 1.5;
 global.playerMoving = 0;
 //---------------------------------------
 
 //-------HEALTH POINTS-------------------
 globalvar playerHP;
-          playerHP         = 5
+          playerHP         = 7
 globalvar playerCanTakeDmg;
           playerCanTakeDmg = true
 globalvar playerDmgCd;
@@ -176,11 +177,12 @@ globalvar oxygenCanDmg;
 
 //----HAZARDS----------------------------------------------------------------
 global.monster_FlashTimer       = 2;
+
 global.monster_Goober_hp        = 7;
-global.monster_Goober_speed     = 0.8;
+global.monster_Goober_speed     = 0.4;
 
 global.monster_Burker_hp        = 5;
-global.monster_Burker_speed     = 1.5;
+global.monster_Burker_speed     = 0.7;
 //---------------------------------------------------------------------------
 
 
@@ -195,6 +197,29 @@ drawCleared    = false
 drawUnexplored = false
 drawNothing    = true
 //---------------------------------------------------------------------------
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>oxygenCanDmg = true;
 </string>
           </argument>
         </arguments>
@@ -244,6 +269,19 @@ drawNothing    = true
 {
     lastMouseX = mouse_x;
     lastMouseY = mouse_y;
+    
+    //CALCULATE OXYGEN DRAIN
+    if(oxygenLevel &gt; 0 &amp;&amp; roomArray[xMapPlayer, yMapPlayer].cleared == false)
+    {
+        oxygenLevel -= oxygenRate;
+    }
+    
+    if(oxygenLevel &lt; 1 &amp;&amp; oxygenCanDmg == true)
+    {
+        oxygenCanDmg = false;
+        playerHP -=1
+        alarm[0] = 120;
+    }
 }
 if (roomArray[xMapPlayer, yMapPlayer].cleared == true)
 {
@@ -255,7 +293,7 @@ if (playerHP &lt; 1)
     with(obj_player) instance_destroy()
 }
 
-if(instance_number( obj_hazard) &lt; 1)
+if(instance_number(obj_hazard) &lt; 1)
 {
     with (instance_nearest(x, y, obj_LockedDoor)) instance_destroy();
     with (instance_nearest(x, y, obj_LockedDoorTop)) instance_destroy();  
@@ -344,7 +382,6 @@ if(keyboard_check_pressed(vk_f12))
             <kind>1</kind>
             <string>script_execute(scr_GenerateDungeon);
 room_goto(rm_MENU);
-script_execute(scr_placeDoors);
 with(obj_player) instance_destroy();
 </string>
           </argument>
@@ -392,30 +429,57 @@ with(obj_player) instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//-----DEBUG DRAW FPS---------------------------
+            <string>depth = -1000
+
+//MAXIMIZE GUI by 4 (same number we multiplied the view of the room by)
+display_set_gui_maximise(4, 4, 0, 0);
+
+//DRAW DEAD TEXT
+ww = window_get_width()
+wh = window_get_height()
+if (playerHP &lt; 1 )
+{
+    draw_sprite_ext(spr_deadText, image_index, ww, wh, image_xscale, image_yscale, 0, c_white, 1)
+}
+
+//DRAW CURSOR
+draw_sprite_ext(spr_reticle, image_index, mouse_x, mouse_y, 1, 1, 0, c_white, 1);
+
+
+//STUFF TO DRAW ONLY OUTSIDE MAIN MENU
+if(asset_get_index(room_get_name(room)) != rm_MENU)
+{
+
+    //DRAW MINIMAP
+    script_execute(scr_drawMiniMap);
+    
+    //DRAW HEARTS
+    for(i = 0; i &lt; global.playerHP; i++)
+        draw_sprite_ext(spr_heart, image_index, x + 148 + i * 6, y - 16, image_xscale /2, image_yscale /2, 0, c_white, 1)
+    
+    //DRAW OXYGEN TANK
+    draw_sprite_ext( spr_oxygen_amount, image_index, x + 148, y - 28,  oxygenLevel / oxygenLevelInitial, 1, 0, c_white, 1 );
+    draw_sprite_ext( spr_oxygen_tube,   image_index, x + 148, y - 28,  1,                                1, 0, c_white, 1 );
+    
+    //DRAW PAUSE
+    if(pause == 0)
+    {
+         draw_sprite(spr_pause, image_index, 120, 130);
+    }
+}
+    
+//-----DEBUG DRAW FPS---------------------------
 if (canDrawFPS)
 {
     canDrawFPS = false;
     alarm[0] = 20;
     fpsDRAW = fps_real;  
 }
-draw_text(20, 205, string(ceil(fpsDRAW)))
+draw_set_font(fnt_fpsFont);
+draw_set_color(c_white)
+draw_text(1, 50, string(ceil(fpsDRAW)))
 //-----------------------------------------------
 
-
-depth = -1000
-ww = window_get_width()
-wh = window_get_height()
-if (playerHP &lt; 1 )
-{
-    draw_sprite_ext(spr_deadText, image_index, ww/2, wh/2, image_xscale * 2, image_yscale * 2, 0, c_white, 1)
-}
-
-//Does not draw the following in the Main Menu room
-if(asset_get_index(room_get_name(room)) != rm_MENU)
-{
-    script_execute(scr_drawHearts);
-}
 </string>
           </argument>
         </arguments>
@@ -438,27 +502,23 @@ if(asset_get_index(room_get_name(room)) != rm_MENU)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//-----LIGHT------------------------------
-
-scr_drawLight(room_width  / 2, //xPos
-              room_height / 2, //yPos
-              120,             //Radius
-              80,              //Precision
-              3);             //Intensity (0 = weak -&gt;255: strong)
-//----------------------------------------
-
-//Does not draw the following in the Main Menu room
-if(asset_get_index(room_get_name(room)) != rm_MENU)
+            <string>if(asset_get_index(room_get_name(room)) != rm_MENU)
 {
-    script_execute(scr_drawMiniMap);
+    //-----LIGHT------------------------------
+    scr_drawLight(room_width  /2, //xPos
+                  room_height /2, //yPos
+                  120,             //Radius
+                  80,              //Precision
+                  4);             //Intensity (0 = weak -&gt;255: strong)
+    
+    //----------------------------------------
 }
-draw_sprite(spr_reticle, image_index, mouse_x, mouse_y);
 
 
-if(pause == 0)
-{
-     draw_sprite(spr_pause, image_index, 120, 130);
-}
+
+
+
+
 
 </string>
           </argument>

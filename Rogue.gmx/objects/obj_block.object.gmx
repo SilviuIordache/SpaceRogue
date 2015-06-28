@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>with( instance_create(x, y - 8, obj_blockTop))
 {depth = -3}
+
 </string>
           </argument>
         </arguments>

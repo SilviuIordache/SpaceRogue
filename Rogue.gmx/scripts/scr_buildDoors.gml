@@ -31,4 +31,3 @@ if ( downDoor == 1 )
     instance_create(112, 160, obj_door);  
     instance_create(112, 160, obj_LockedDoor);
 }
-

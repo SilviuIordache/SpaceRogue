@@ -1,4 +1,4 @@
-depth = - 5000;
+depth = - 1000;
 draw_set_alpha(0.35);
 draw_rectangle_colour(1, 1, 50, 50, c_white, c_white, c_white, c_white, false); // minimap white bck
 draw_set_alpha(1);

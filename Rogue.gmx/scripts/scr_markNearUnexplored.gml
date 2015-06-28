@@ -17,4 +17,3 @@ o = roomArray[i,j + 1].available
 if(o == 4 || o == 9 || o == 1 || o == 2 )
     roomArray[i,j + 1].nearUnexplored = true;
 
-

@@ -9,11 +9,13 @@
     <sprites name="spr_player">
       <sprite>sprites\spr_player2</sprite>
       <sprite>sprites\spr_playerShadow</sprite>
+      <sprite>sprites\spr_heart2</sprite>
       <sprite>sprites\spr_heart</sprite>
       <sprite>sprites\spr_reticle</sprite>
     </sprites>
     <sprites name="spr_weapons">
       <sprite>sprites\spr_rifleBullet</sprite>
+      <sprite>sprites\spr_rifleBullet33</sprite>
       <sprite>sprites\spr_pistolBullet</sprite>
       <sprite>sprites\spr_RPG_Bullet</sprite>
       <sprite>sprites\spr_shotgunBullet</sprite>
@@ -32,9 +34,11 @@
       <sprite>sprites\spr_blockTriangle</sprite>
       <sprite>sprites\spr_blockTemp</sprite>
       <sprite>sprites\spr_light</sprite>
+      <sprite>sprites\spr_light3</sprite>
       <sprite>sprites\spr_light_3</sprite>
       <sprite>sprites\spr_oxygen_tube</sprite>
       <sprite>sprites\spr_oxygen_amount</sprite>
+      <sprite>sprites\spr_bulletBlock</sprite>
     </sprites>
     <sprites name="spr_other">
       <sprite>sprites\spr_StartButton</sprite>
@@ -60,7 +64,6 @@
     </scripts>
     <scripts name="scr_GUI">
       <script>scripts\scr_drawMiniMap.gml</script>
-      <script>scripts\scr_drawHearts.gml</script>
       <script>scripts\scr_drawSquareAt.gml</script>
     </scripts>
     <scripts name="scr_DungeonGeneration">
@@ -69,12 +72,12 @@
       <script>scripts\scr_setDoorLayout.gml</script>
       <script>scripts\scr_setRoomLayout.gml</script>
       <script>scripts\scr_addSecondaryRooms.gml</script>
+      <script>scripts\scr_screenShaker.gml</script>
       <script>scripts\scr_placeDoors.gml</script>
       <script>scripts\scr_buildDoors.gml</script>
       <script>scripts\scr_markNearUnexplored.gml</script>
     </scripts>
     <scripts name="scr_player">
-      <script>scripts\scr_screenShaker.gml</script>
       <script>scripts\scr_playerKnockBack.gml</script>
       <script>scripts\scr_resetPlayer.gml</script>
     </scripts>
@@ -82,6 +85,9 @@
       <script>scripts\scr_drawLight.gml</script>
     </scripts>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_fpsFont</font>
+  </fonts>
   <objects name="objects">
     <objects name="other">
       <object>objects\obj_system</object>
@@ -99,6 +105,7 @@
       <object>objects\obj_door</object>
       <object>objects\obj_wall</object>
       <object>objects\obj_oxygenTube</object>
+      <object>objects\obj_bulletSponge</object>
     </objects>
     <objects name="player">
       <object>objects\obj_player</object>

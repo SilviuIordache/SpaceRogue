@@ -70,7 +70,7 @@ image_angle = point_direction(x, y, mouse_x, mouse_y);
 //-----LIGHT------------------------------
 scr_drawLight(x, //xPos
               y, //yPos
-              5,             //Radius
+              10,             //Radius
               5,              //Precision
               5);             //Intensity (0 = weak -&gt;255: strong)
 //----------------------------------------

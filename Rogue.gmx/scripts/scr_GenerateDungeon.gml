@@ -9,8 +9,8 @@ for (i = 0; i < roomArrayW; i ++) {
         
         // make some rooms not contain any monsters
         hasHazardsVar = irandom(100);
-        if (hasHazardsVar < 20) roomArray[i, j].cleared = true;
-        else                   roomArray[i, j].cleared = false;
+        if (hasHazardsVar < 10) roomArray[i, j].cleared = true;
+        else                    roomArray[i, j].cleared = false;
     }
 }
 //-------------------------------------------------
@@ -56,5 +56,5 @@ roomArray[xArrayFinish, xArrayFinish].available  = 9;// Mark FINISH with availab
 script_execute(scr_pathConnect, xArrayStart, yArrayStart, xArrayFinish, xArrayFinish);
 script_execute(scr_addSecondaryRooms);
 script_execute(scr_setDoorLayout);
-//script_execute(setRoomLayout);
+script_execute(scr_placeDoors);
 //-------------------------------------------------------------------------------------
