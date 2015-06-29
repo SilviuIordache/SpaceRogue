@@ -28,6 +28,9 @@
             <string>event_inherited();
 dmg = global.rifle_Bullet_Dmg;
 speed = global.rifle_Bullet_Speed;
+
+audio_play_sound(snd_rifleBullet, 100, false);
+
 </string>
           </argument>
         </arguments>

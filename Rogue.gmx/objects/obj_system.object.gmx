@@ -50,6 +50,8 @@ randomize(); // randomize with different seed each time
 //--------------------------------------------------------
 
 //------SURFACE---------------------------------------
+globalvar lightON;
+          lightON = true;
 global.light = surface_create(room_width,room_height);
 //----------------------------------------------------
 
@@ -125,12 +127,12 @@ global.playerMoveSpeed = 0;
 global.playerFrictionFactor = 0.15;
 global.playerGainSpeed = 0.3;
 global.playerTopSpeed  = 1.5;
-global.playerMoving = 0;
+global.playerIsMoving = false;
 //---------------------------------------
 
 //-------HEALTH POINTS-------------------
 globalvar playerHP;
-          playerHP         = 7
+          playerHP         = 8
 globalvar playerCanTakeDmg;
           playerCanTakeDmg = true
 globalvar playerDmgCd;
@@ -153,7 +155,7 @@ global.shotgun_Bullet_Dmg       = 2;
 global.shotgun_Bullet_cd        = 40
 global.canShootShotgun          = true
 
-global.RPG_Bullet_Speed         = 2
+global.RPG_Bullet_Speed         = 5
 global.RPG_Bullet_Dmg           = 10;
 global.RPG_Bullet_cd            = 100;
 global.canShootRPG              = true
@@ -176,6 +178,14 @@ globalvar oxygenCanDmg;
 
 
 //----HAZARDS----------------------------------------------------------------
+
+//Grid for Pathfinding AI
+globalvar AI_grid;
+          AI_grid = mp_grid_create(0, 0, 15, 11, 16, 16);
+
+
+
+//monster stats
 global.monster_FlashTimer       = 2;
 
 global.monster_Goober_hp        = 7;
@@ -288,17 +298,21 @@ if (roomArray[xMapPlayer, yMapPlayer].cleared == true)
     oxygenLevel = oxygenLevelInitial;
 }
 
+//CHECK IF PLAYER IS ALIVE
 if (playerHP &lt; 1)
 {
     with(obj_player) instance_destroy()
 }
 
+//MARK ROOM CLEARED
 if(instance_number(obj_hazard) &lt; 1)
 {
     with (instance_nearest(x, y, obj_LockedDoor)) instance_destroy();
     with (instance_nearest(x, y, obj_LockedDoorTop)) instance_destroy();  
     global.roomArray[global.xMapPlayer,global.yMapPlayer].cleared = true; 
 }
+//PLAY PLAYER WALK SOUND
+//if (global.playerIsMoving == true)
 
 //------------DEBUG VARIABLES------------------
 if(keyboard_check_pressed(vk_f1))
@@ -434,13 +448,6 @@ with(obj_player) instance_destroy();
 //MAXIMIZE GUI by 4 (same number we multiplied the view of the room by)
 display_set_gui_maximise(4, 4, 0, 0);
 
-//DRAW DEAD TEXT
-ww = window_get_width()
-wh = window_get_height()
-if (playerHP &lt; 1 )
-{
-    draw_sprite_ext(spr_deadText, image_index, ww, wh, image_xscale, image_yscale, 0, c_white, 1)
-}
 
 //DRAW CURSOR
 draw_sprite_ext(spr_reticle, image_index, mouse_x, mouse_y, 1, 1, 0, c_white, 1);
@@ -449,22 +456,29 @@ draw_sprite_ext(spr_reticle, image_index, mouse_x, mouse_y, 1, 1, 0, c_white, 1)
 //STUFF TO DRAW ONLY OUTSIDE MAIN MENU
 if(asset_get_index(room_get_name(room)) != rm_MENU)
 {
-
     //DRAW MINIMAP
     script_execute(scr_drawMiniMap);
     
-    //DRAW HEARTS
+    //DRAW HEALTH POINTS
     for(i = 0; i &lt; global.playerHP; i++)
-        draw_sprite_ext(spr_heart, image_index, x + 148 + i * 6, y - 16, image_xscale /2, image_yscale /2, 0, c_white, 1)
+        draw_sprite_ext(spr_heart, image_index, x + 182 + i * 6, y + 12, image_xscale /2, image_yscale /2, 0, c_white, 1)
     
     //DRAW OXYGEN TANK
-    draw_sprite_ext( spr_oxygen_amount, image_index, x + 148, y - 28,  oxygenLevel / oxygenLevelInitial, 1, 0, c_white, 1 );
-    draw_sprite_ext( spr_oxygen_tube,   image_index, x + 148, y - 28,  1,                                1, 0, c_white, 1 );
+    draw_sprite_ext( spr_oxygen_amount, image_index, x + 182, y + 2,  oxygenLevel / oxygenLevelInitial, 1, 0, c_white, 1 );
+    draw_sprite_ext( spr_oxygen_tube,   image_index, x + 182, y + 2,  1,                                1, 0, c_white, 1 );
     
     //DRAW PAUSE
     if(pause == 0)
     {
          draw_sprite(spr_pause, image_index, 120, 130);
+    }
+    
+    //DRAW DEAD TEXT
+    ww = window_get_width()
+    wh = window_get_height()
+    if (playerHP &lt; 1 )
+    {
+        draw_sprite_ext(spr_deadText, image_index, 120, 130, image_xscale, image_yscale, 0, c_white, 1)
     }
 }
     
@@ -480,6 +494,8 @@ draw_set_color(c_white)
 draw_text(1, 50, string(ceil(fpsDRAW)))
 //-----------------------------------------------
 
+
+draw_text(1, 80, string((lightON)))
 </string>
           </argument>
         </arguments>
@@ -502,8 +518,11 @@ draw_text(1, 50, string(ceil(fpsDRAW)))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(asset_get_index(room_get_name(room)) != rm_MENU)
+            <string>depth = -1001
+if(asset_get_index(room_get_name(room)) != rm_MENU)
 {
+ if (lightON == true)
+ {
     //-----LIGHT------------------------------
     scr_drawLight(room_width  /2, //xPos
                   room_height /2, //yPos
@@ -512,14 +531,42 @@ draw_text(1, 50, string(ceil(fpsDRAW)))
                   4);             //Intensity (0 = weak -&gt;255: strong)
     
     //----------------------------------------
+ }
 }
 
+/*
+mp_grid_draw(AI_grid);
 
 
 
 
 
 
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="122">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>lightON *= -1
 </string>
           </argument>
         </arguments>

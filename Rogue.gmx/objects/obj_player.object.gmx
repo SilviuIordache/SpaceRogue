@@ -193,19 +193,29 @@ playerTookDmg = false;
 if keyboard_check(ord("A")) {
     hspeed -= global.playerGainSpeed * pause;
     global.playerMoving = global.playerMoveSpeed;
+    global.playerIsMoving = true;
 }
 if keyboard_check(ord("D")) {
     hspeed += global.playerGainSpeed * pause;
     global.playerMoving = global.playerMoveSpeed;
+    global.playerIsMoving = true;
 }
 if keyboard_check(ord("W")) {
     vspeed -= global.playerGainSpeed * pause;
     global.playerMoving = global.playerMoveSpeed;
+    global.playerIsMoving = true;
 }
 if keyboard_check(ord("S")) {
     vspeed += global.playerGainSpeed * pause;
     global.playerMoving = global.playerMoveSpeed;
+    global.playerIsMoving = true;
 }
+
+if (!keyboard_check(ord("A")) &amp;&amp; !keyboard_check(ord("A")) &amp;&amp; !keyboard_check(ord("A")) &amp;&amp; !keyboard_check(ord("A")))
+{  
+   global.playerIsMoving = false;
+}
+
 
 //Limit player speed
 if (speed &gt; global.playerTopSpeed) {
@@ -238,6 +248,7 @@ if(currentWeapon == 2 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.c
 }
 if(currentWeapon == 3 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootShotgun)
 {
+    audio_play_sound(snd_shotgunBlast, 100, false);
     script_execute(scr_playerKnockBack, 0.5);
     script_execute(scr_screenShaker, 0.4, 5); //Intensity, Duration
     global.canShootShotgun = false;
@@ -304,11 +315,14 @@ if( mouse_check_button(mb_right))
             <kind>1</kind>
             <string>if (playerCanTakeDmg == true)
 {
+    audio_play_sound(snd_playerHurt, 100, false);
     global.playerHP -= 1;
     playerCanTakeDmg = false;
     alarm[5] = playerDmgCd;
     playerTookDmg = true;
     alarm[6] = 2;
+    
+    script_execute(scr_playerEnemyKnock, 0.1)
 }
 
 </string>

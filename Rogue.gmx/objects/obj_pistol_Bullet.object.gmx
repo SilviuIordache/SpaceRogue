@@ -28,6 +28,9 @@
             <string>event_inherited();
 dmg = global.pistol_Bullet_Dmg;
 speed = global.pistol_Bullet_Speed * pause;
+
+audio_play_sound(snd_pistolBullet, 100, false);
+
 </string>
           </argument>
         </arguments>
