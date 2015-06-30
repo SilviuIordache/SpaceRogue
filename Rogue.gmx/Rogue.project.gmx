@@ -138,6 +138,7 @@
       <object>objects\obj_Burker</object>
       <object>objects\obj_GooberSP</object>
       <object>objects\obj_Goober</object>
+      <object>objects\obj_AlienSP</object>
       <object>objects\obj_Alien</object>
     </objects>
   </objects>
@@ -151,6 +152,7 @@
       <room>rooms\rm_normal3</room>
       <room>rooms\rm_normal4</room>
       <room>rooms\rm_normal5</room>
+      <room>rooms\rm_normal6</room>
       <room>rooms\rm_test_02</room>
       <room>rooms\rm_TEST2</room>
       <room>rooms\rm_TEST</room>

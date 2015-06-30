@@ -26,11 +26,14 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-path_smartAI = path_add();
+hp         = global.monster_Alien_hp;
+spd        = global.monster_Alien_speed * pause;
+
+path_smartAI  = path_add();
 mp_grid_add_instances(AI_grid, obj_block, false); 
 
 pathFindingStarted = false;
-shouldSpread = true;
+shouldSpread       = true;
 
 
 </string>
@@ -84,7 +87,7 @@ if (instance_exists(obj_player)&amp;&amp; pathFindingStarted == false)
     pathFindingStarted = true;
     alarm[0] = 30;
     mp_grid_path(AI_grid, path_smartAI, x, y, obj_player.x + 12, obj_player.y + 12, true);
-    path_start(path_smartAI, 0.4 * pause, 0, 1)
+    path_start(path_smartAI, spd * pause, 0, 1)
 }
 //IF THE PLAYER DIED, STOP PATHFINDING
 else if (!instance_exists(obj_player))

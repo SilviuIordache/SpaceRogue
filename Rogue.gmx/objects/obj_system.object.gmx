@@ -184,7 +184,6 @@ globalvar AI_grid;
           AI_grid = mp_grid_create(0, 0, 15, 11, 16, 16);
 
 
-
 //monster stats
 global.monster_FlashTimer       = 2;
 
@@ -193,6 +192,11 @@ global.monster_Goober_speed     = 0.4;
 
 global.monster_Burker_hp        = 5;
 global.monster_Burker_speed     = 0.7;
+
+global.monster_Alien_hp         = 5;
+global.monster_Alien_speed      = 0.5;
+
+
 //---------------------------------------------------------------------------
 
 
@@ -279,18 +283,21 @@ drawNothing    = true
 {
     lastMouseX = mouse_x;
     lastMouseY = mouse_y;
-    
-    //CALCULATE OXYGEN DRAIN
-    if(oxygenLevel &gt; 0 &amp;&amp; roomArray[xMapPlayer, yMapPlayer].cleared == false)
+    if (instance_exists(obj_player))
     {
-        oxygenLevel -= oxygenRate;
-    }
-    
-    if(oxygenLevel &lt; 1 &amp;&amp; oxygenCanDmg == true)
-    {
-        oxygenCanDmg = false;
-        playerHP -=1
-        alarm[0] = 120;
+        //CALCULATE OXYGEN DRAIN
+        if(oxygenLevel &gt; 0 &amp;&amp; roomArray[xMapPlayer, yMapPlayer].cleared == false)
+        {
+            oxygenLevel -= oxygenRate;
+        }
+        
+        if(oxygenLevel &lt; 1 &amp;&amp; oxygenCanDmg == true)
+        {
+            oxygenCanDmg = false;
+            audio_play_sound(snd_playerHurt, 100, false);
+            playerHP -=1
+            alarm[1] = 120;
+        }
     }
 }
 if (roomArray[xMapPlayer, yMapPlayer].cleared == true)
