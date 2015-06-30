@@ -26,12 +26,36 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-g = 0;
 path_smartAI = path_add();
-mp_grid_add_instances(AI_grid, obj_block, true); 
+mp_grid_add_instances(AI_grid, obj_block, false); 
 
-    
+pathFindingStarted = false;
+shouldSpread = true;
 
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>pathFindingStarted = false;
 </string>
           </argument>
         </arguments>
@@ -54,16 +78,52 @@ mp_grid_add_instances(AI_grid, obj_block, true);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(obj_player) &amp;&amp; self.g == 0)
+            <string>//CHECK TO SEE IF THE PLAYER IS ALIVE AND A PATHFIND HASN'T ALREADY STARTED
+if (instance_exists(obj_player)&amp;&amp; pathFindingStarted == false)
 {
-    mp_grid_path(AI_grid, path_smartAI, x, y, obj_player.x, obj_player.y, true);
-    path_start(path_smartAI, 1, 0, 1)
-    self.g = 1;
+    pathFindingStarted = true;
+    alarm[0] = 30;
+    mp_grid_path(AI_grid, path_smartAI, x, y, obj_player.x + 12, obj_player.y + 12, true);
+    path_start(path_smartAI, 0.4 * pause, 0, 1)
 }
-else
+//IF THE PLAYER DIED, STOP PATHFINDING
+else if (!instance_exists(obj_player))
 {
     path_end();
 }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_Alien">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var i;
+i = point_direction(other.x, other.y, x, y);
+
+if (!place_meeting(x + lengthdir_x(1, i), y + lengthdir_y(1, i), obj_block))
+{
+  x += lengthdir_x(1, i);
+  y += lengthdir_y(1, i);
+}
+
+    
 </string>
           </argument>
         </arguments>

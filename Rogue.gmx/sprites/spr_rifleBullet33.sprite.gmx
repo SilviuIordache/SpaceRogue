@@ -17,8 +17,8 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>8</width>
-  <height>2</height>
+  <width>4</width>
+  <height>1</height>
   <frames>
     <frame index="0">images\spr_rifleBullet33_0.png</frame>
   </frames>

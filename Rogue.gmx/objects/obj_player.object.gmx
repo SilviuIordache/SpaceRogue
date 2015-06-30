@@ -211,7 +211,7 @@ if keyboard_check(ord("S")) {
     global.playerIsMoving = true;
 }
 
-if (!keyboard_check(ord("A")) &amp;&amp; !keyboard_check(ord("A")) &amp;&amp; !keyboard_check(ord("A")) &amp;&amp; !keyboard_check(ord("A")))
+if (!keyboard_check(ord("A")) &amp;&amp; !keyboard_check(ord("W")) &amp;&amp; !keyboard_check(ord("S")) &amp;&amp; !keyboard_check(ord("D")))
 {  
    global.playerIsMoving = false;
 }

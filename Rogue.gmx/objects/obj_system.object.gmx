@@ -52,7 +52,7 @@ randomize(); // randomize with different seed each time
 //------SURFACE---------------------------------------
 globalvar lightON;
           lightON = true;
-global.light = surface_create(room_width,room_height);
+//global.light = surface_create(room_width,room_height);
 //----------------------------------------------------
 
 
@@ -495,7 +495,7 @@ draw_text(1, 50, string(ceil(fpsDRAW)))
 //-----------------------------------------------
 
 
-draw_text(1, 80, string((lightON)))
+draw_text(1, 80, string((global.playerIsMoving)))
 </string>
           </argument>
         </arguments>
@@ -533,8 +533,9 @@ if(asset_get_index(room_get_name(room)) != rm_MENU)
     //----------------------------------------
  }
 }
-
 /*
+depth = -999
+
 mp_grid_draw(AI_grid);
 
 

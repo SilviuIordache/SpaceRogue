@@ -104,9 +104,12 @@ if(surface_exists(lightSurface))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_blend_mode(bm_subtract);
-draw_surface(lightSurface, 0, 0);
-draw_set_blend_mode(bm_normal);
+            <string>if (lightON == true)
+{
+    draw_set_blend_mode(bm_subtract);
+    draw_surface(lightSurface, 0, 0);
+    draw_set_blend_mode(bm_normal);
+}
 </string>
           </argument>
         </arguments>
