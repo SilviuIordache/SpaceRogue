@@ -6,7 +6,7 @@ for (i = 0; i < roomArrayW; i ++) {
         roomArray[i, j].doorLayout     = 0;
         roomArray[i, j].roomLayout     = "";
         roomArray[i, j].nearUnexplored = false;
-        
+
         // make some rooms not contain any monsters
         hasHazardsVar = irandom(100);
         if (hasHazardsVar < 10) roomArray[i, j].cleared = true;

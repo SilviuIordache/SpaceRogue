@@ -550,6 +550,7 @@ depth = -1
 draw_sprite_ext( spr_playerShadow, image_index, x + 12, y + 18, image_xscale, image_yscale, image_angle, image_blend, 0.2 );
 //-----------------------------------------------------------------------------------------------
 
+
 //-----LIGHT------------------------------
 scr_drawLight(x + 12, //xPos
               y + 8, //yPos

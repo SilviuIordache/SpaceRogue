@@ -35,8 +35,10 @@
     </sprites>
     <sprites name="spr_environment">
       <sprite>sprites\spr_block</sprite>
-      <sprite>sprites\spr_LockedDoor</sprite>
+      <sprite>sprites\spr_block_Dest</sprite>
       <sprite>sprites\spr_boxTop</sprite>
+      <sprite>sprites\spr_block_Dest_top</sprite>
+      <sprite>sprites\spr_LockedDoor</sprite>
       <sprite>sprites\spr_lock</sprite>
       <sprite>sprites\spr_door</sprite>
       <sprite>sprites\spr_blockTriangle</sprite>
@@ -110,12 +112,14 @@
     <objects name="environment">
       <object>objects\obj_block</object>
       <object>objects\obj_blockTop</object>
+      <object>objects\obj_blockDestTop</object>
       <object>objects\obj_LockedDoor</object>
       <object>objects\obj_LockedDoorTop</object>
       <object>objects\obj_door</object>
       <object>objects\obj_wall</object>
       <object>objects\obj_oxygenTube</object>
       <object>objects\obj_bulletSponge</object>
+      <object>objects\obj_wall_Dest</object>
     </objects>
     <objects name="player">
       <object>objects\obj_player</object>
@@ -146,16 +150,24 @@
     <rooms name="_SYS_ROOMS">
       <room>rooms\rm_MENU</room>
     </rooms>
-    <rooms name="_Test">
+    <rooms name="normal_rooms">
       <room>rooms\rm_normal1</room>
       <room>rooms\rm_normal2</room>
       <room>rooms\rm_normal3</room>
       <room>rooms\rm_normal4</room>
       <room>rooms\rm_normal5</room>
       <room>rooms\rm_normal6</room>
+      <room>rooms\rm_normal7</room>
+      <room>rooms\rm_normal8</room>
+      <room>rooms\rm_normal9</room>
+      <room>rooms\rm_normal10</room>
       <room>rooms\rm_test_02</room>
-      <room>rooms\rm_TEST2</room>
+    </rooms>
+    <rooms name="_TEST">
       <room>rooms\rm_TEST</room>
+      <room>rooms\rm_TEST2</room>
+      <room>rooms\rm_TEST3</room>
+      <room>rooms\rm_TEST4</room>
     </rooms>
   </rooms>
   <constants number="2">

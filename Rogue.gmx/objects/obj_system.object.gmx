@@ -56,6 +56,7 @@ globalvar lightON;
 //----------------------------------------------------
 
 
+
 //------PAUSE------------
 globalvar pauseVariable;
           pauseVariable = 1;
@@ -70,7 +71,14 @@ globalvar lastMouseY;
           lastMouseY = 0;
 //--------------------------------------------------
 
-//-----------ROOM PATH GENERATION VARIABLES----------------------------------------------------------
+//-----------INSIDE ROOM VARIABLES------------------------------
+
+globalvar roomLayoutChanged;
+          roomLayoutChanged = false;
+
+//--------------------------------------------------------------
+
+//-----------DUNGEON ROOM PATH GENERATION VARIABLES----------------------------------------------------------
 globalvar xArrayStart, yArrayStart, xArrayFinish, xArrayFinish; // start and finish room positions
           xArrayStart  = 0;
           xArrayFinish = 0;
@@ -98,7 +106,7 @@ globalvar xMapPlayer, yMapPlayer; //current player position on the minimap
 //roomArrayH = room_height div arrayCellSize; 
 
 globalvar nrOfRooms;
-          nrOfRooms = 5;
+          nrOfRooms = 9;
 globalvar roomArrayW;
 globalvar roomArrayH;
 roomArrayW = 10; // width  of grid in cells
@@ -193,6 +201,10 @@ global.monster_Goober_speed     = 0.4;
 global.monster_Burker_hp        = 5;
 global.monster_Burker_speed     = 0.7;
 
+globalvar playerHeadStart;
+          playerHeadStart       = false;
+globalvar alienStartDelay;        
+          alienStartDelay       = 60;
 global.monster_Alien_hp         = 5;
 global.monster_Alien_speed      = 0.5;
 
@@ -211,6 +223,29 @@ drawCleared    = false
 drawUnexplored = false
 drawNothing    = true
 //---------------------------------------------------------------------------
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>playerHeadStart = true;
 </string>
           </argument>
         </arguments>
@@ -428,6 +463,8 @@ with(obj_player) instance_destroy();
             <kind>1</kind>
             <string>script_execute(scr_placeDoors)
 
+playerHeadStart = false;
+alarm[2] = alienStartDelay;
 </string>
           </argument>
         </arguments>
@@ -489,7 +526,9 @@ if(asset_get_index(room_get_name(room)) != rm_MENU)
     }
 }
     
-//-----DEBUG DRAW FPS---------------------------
+//-----DEBUG VALUES------------------------------------------------
+
+//---DISPLAY FPS---------------------------------
 if (canDrawFPS)
 {
     canDrawFPS = false;
@@ -499,10 +538,16 @@ if (canDrawFPS)
 draw_set_font(fnt_fpsFont);
 draw_set_color(c_white)
 draw_text(1, 50, string(ceil(fpsDRAW)))
-//-----------------------------------------------
+//----------------------------------------------
+
+//draw_text(1, 80, string((global.playerIsMoving)))
+draw_text(1, 80, string((roomLayoutChanged)))
+
+draw_text(180, 160, string((room_get_name(room))))
+//----------------------------------------------------------------
 
 
-draw_text(1, 80, string((global.playerIsMoving)))
+
 </string>
           </argument>
         </arguments>
@@ -540,9 +585,9 @@ if(asset_get_index(room_get_name(room)) != rm_MENU)
     //----------------------------------------
  }
 }
+
 /*
 depth = -999
-
 mp_grid_draw(AI_grid);
 
 

@@ -82,18 +82,35 @@ shouldSpread       = true;
           <argument>
             <kind>1</kind>
             <string>//CHECK TO SEE IF THE PLAYER IS ALIVE AND A PATHFIND HASN'T ALREADY STARTED
-if (instance_exists(obj_player)&amp;&amp; pathFindingStarted == false)
+if(playerHeadStart == true)
 {
-    pathFindingStarted = true;
-    alarm[0] = 30;
-    mp_grid_path(AI_grid, path_smartAI, x, y, obj_player.x + 12, obj_player.y + 12, true);
-    path_start(path_smartAI, spd * pause, 0, 1)
+    if (instance_exists(obj_player)&amp;&amp; pathFindingStarted == false)
+    {
+        mp_grid_path(AI_grid, path_smartAI, x, y, obj_player.x + 12, obj_player.y + 12, true);   
+        if (path_exists(path_smartAI))
+        {
+            pathFindingStarted = true;
+            alarm[0] = 30;
+            path_start(path_smartAI, spd * pause, 0, 1) 
+        }
+        else
+            path_end();
+          
+        if (roomLayoutChanged == true)
+        {
+            mp_grid_clear_all(AI_grid);
+            mp_grid_add_instances(AI_grid, obj_block, false); 
+            roomLayoutChanged = false;
+        }
+    
+    }
+    //IF THE PLAYER DIED, STOP PATHFINDING
+    else if (!instance_exists(obj_player))
+    {
+        path_end();
+    }
 }
-//IF THE PLAYER DIED, STOP PATHFINDING
-else if (!instance_exists(obj_player))
-{
-    path_end();
-}
+
 
 </string>
           </argument>
