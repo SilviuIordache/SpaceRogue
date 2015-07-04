@@ -76,14 +76,15 @@ tookDmg    = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (other) { instance_destroy()}
+            <string>//with (other) { instance_destroy()}
 hp -= other.dmg;
 tookDmg = 1
 alarm[1] = global.monster_FlashTimer; // damaged quick visual feedback
 
 if(hp &lt; 1)
 {
-    instance_destroy()
+    script_execute(scr_itemDroper);
+    instance_destroy();
 }
 </string>
           </argument>
@@ -118,9 +119,12 @@ else
     
     
 //------DEBUG FOR ENEMIES-----------------
-draw_set_color(c_black)
-if (instance_exists(obj_player))
-   draw_line(x + 8, y + 8, obj_player.x + 12, obj_player.y + 12);
+if (global.canDrawLine == true)
+{
+    draw_set_color(c_white)
+    if (instance_exists(obj_player))
+       draw_line(x + 8, y + 8, obj_player.x + 12, obj_player.y + 12);
+}
 //----------------------------------------
 </string>
           </argument>

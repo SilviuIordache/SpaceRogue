@@ -64,21 +64,14 @@ globalvar pause;
           pause = 1;
 //-----------------------
 
-//-----STOP WEAPON ROTATION DRAW IN PAUSE VARIABLES------
-globalvar lastMouseX;
-          lastMouseX = 0;
-globalvar lastMouseY;
-          lastMouseY = 0;
-//--------------------------------------------------
+
 
 //-----------INSIDE ROOM VARIABLES------------------------------
-
 globalvar roomLayoutChanged;
           roomLayoutChanged = false;
-
 //--------------------------------------------------------------
 
-//-----------DUNGEON ROOM PATH GENERATION VARIABLES----------------------------------------------------------
+//-----------DUNGEON ROOM PATH GENERATION VARIABLES------------------------------------------------
 globalvar xArrayStart, yArrayStart, xArrayFinish, xArrayFinish; // start and finish room positions
           xArrayStart  = 0;
           xArrayFinish = 0;
@@ -88,7 +81,7 @@ globalvar nextDirection; // boolean that alternates filling 1s between the x and
           nextDirection = power(-1, irandom(2));
 globalvar xDistance, yDistance; // hor and ver diff between start and finish rooms
 globalvar sign_xDistance, sign_yDistance; // signs(+ or -) of the hor and ver diff
-//---------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
 
 //---MINIMAP VARIABLES----------------------------------------------------------
@@ -123,24 +116,25 @@ for (i = 0; i &lt; roomArrayW; i++)
 script_execute(scr_GenerateDungeon);
 //--------------------------------------------------------------------------
 
-//-----------------DELTA TIME------------------------------------------------
-globalvar delta;
-          delta = 1
-//---------------------------------------------------------------------------
+
 
 
 //--------------------------PLAYER-------------------------------------------
 //-------MOVEMENT SPEED------------------
 global.playerMoveSpeed = 0;
-global.playerFrictionFactor = 0.15;
-global.playerGainSpeed = 0.3;
-global.playerTopSpeed  = 1.5;
+global.playerFrictionFactor = 0.1;
+global.playerGainSpeed = 0.2;
+global.playerTopSpeed  = 1.2;
 global.playerIsMoving = false;
 //---------------------------------------
 
 //-------HEALTH POINTS-------------------
+globalvar playerMaxHP_base;
+          playerMaxHP_base = 5;
+globalvar playerMaxHP;
+          playerMaxHP      = playerMaxHP_base;
 globalvar playerHP;
-          playerHP         = 8
+          playerHP         = playerMaxHP;          
 globalvar playerCanTakeDmg;
           playerCanTakeDmg = true
 globalvar playerDmgCd;
@@ -148,13 +142,15 @@ globalvar playerDmgCd;
 //---------------------------------------
 
 //----- WEAPONS--------------------------
+globalvar currentWeapon;
+          currentWeapon = 1;    //1 = Pistol ;; 2 = Assault ;; 3 = Shotgun ;; 4 = Rocket
 global.pistol_Bullet_Speed      = 5
-global.pistol_Bullet_Dmg        = 3;
+global.pistol_Bullet_Dmg        = 2.5;
 global.pistol_Bullet_cd         = 20
 global.canShootPistol           = true
 
-global.rifle_Bullet_Speed       = 4
-global.rifle_Bullet_Dmg         = 0.85;
+global.rifle_Bullet_Speed       = 3.5
+global.rifle_Bullet_Dmg         = 0.5;
 global.rifle_Bullet_cd          = 6
 global.canShootRifle            = true
 
@@ -168,6 +164,14 @@ global.RPG_Bullet_Dmg           = 10;
 global.RPG_Bullet_cd            = 100;
 global.canShootRPG              = true
 //---------------------------------------- 
+
+//-----STOP WEAPON ROTATION DRAW IN PAUSE VARIABLES------
+globalvar lastMouseX;
+          lastMouseX = 0;
+globalvar lastMouseY;
+          lastMouseY = 0;
+//-------------------------------------------------------
+
 //---------------------------------------------------------------------------
 
 
@@ -181,6 +185,9 @@ globalvar oxygenRate;
           oxygenRate         = 0.1;
 globalvar oxygenCanDmg;
           oxygenCanDmg       = true;
+globalvar oxygenPickUpValue;
+          oxygenPickUpValue  = 20;
+
 //---------------------------------------------------------------------------
 
 
@@ -190,9 +197,9 @@ globalvar oxygenCanDmg;
 //Grid for Pathfinding AI
 globalvar AI_grid;
           AI_grid = mp_grid_create(0, 0, 15, 11, 16, 16);
+          
 
-
-//monster stats
+//MONSTERS STATS--------------------------
 global.monster_FlashTimer       = 2;
 
 global.monster_Goober_hp        = 7;
@@ -201,19 +208,23 @@ global.monster_Goober_speed     = 0.4;
 global.monster_Burker_hp        = 5;
 global.monster_Burker_speed     = 0.7;
 
-globalvar playerHeadStart;
-          playerHeadStart       = false;
-globalvar alienStartDelay;        
-          alienStartDelay       = 60;
+
 global.monster_Alien_hp         = 5;
 global.monster_Alien_speed      = 0.5;
 
+globalvar playerHeadStart;
+          playerHeadStart       = false;
+globalvar alienStartDelay;        
+          alienStartDelay       = 10;
+//---------------------------------------
 
 //---------------------------------------------------------------------------
 
 
 //--------DEBUG--------------------------------------------------------------
 
+global.canDrawPATH = false;
+global.canDrawLine = false;
 canDrawFPS = true;
 
 drawAvailable  = false
@@ -335,10 +346,7 @@ drawNothing    = true
         }
     }
 }
-if (roomArray[xMapPlayer, yMapPlayer].cleared == true)
-{
-    oxygenLevel = oxygenLevelInitial;
-}
+
 
 //CHECK IF PLAYER IS ALIVE
 if (playerHP &lt; 1)
@@ -353,6 +361,11 @@ if(instance_number(obj_hazard) &lt; 1)
     with (instance_nearest(x, y, obj_LockedDoorTop)) instance_destroy();  
     global.roomArray[global.xMapPlayer,global.yMapPlayer].cleared = true; 
 }
+if (roomArray[xMapPlayer, yMapPlayer].cleared == true)
+{
+    oxygenLevel = oxygenLevelInitial;
+}
+
 //PLAY PLAYER WALK SOUND
 //if (global.playerIsMoving == true)
 
@@ -504,9 +517,13 @@ if(asset_get_index(room_get_name(room)) != rm_MENU)
     script_execute(scr_drawMiniMap);
     
     //DRAW HEALTH POINTS
-    for(i = 0; i &lt; global.playerHP; i++)
+    for(i = 0; i &lt; playerHP; i++)
         draw_sprite_ext(spr_heart, image_index, x + 182 + i * 6, y + 12, image_xscale /2, image_yscale /2, 0, c_white, 1)
+    for(i = 0; i &lt; playerMaxHP; i++)
+        draw_sprite_ext(spr_heartEmpty, image_index, x + 182 + i * 6, y + 12, image_xscale /2, image_yscale /2, 0, c_white, 1)
     
+    //DRAW WEAPON SELECTION ON HUD
+    script_execute(scr_drawWeaponHUD);
     //DRAW OXYGEN TANK
     draw_sprite_ext( spr_oxygen_amount, image_index, x + 182, y + 2,  oxygenLevel / oxygenLevelInitial, 1, 0, c_white, 1 );
     draw_sprite_ext( spr_oxygen_tube,   image_index, x + 182, y + 2,  1,                                1, 0, c_white, 1 );
@@ -541,9 +558,9 @@ draw_text(1, 50, string(ceil(fpsDRAW)))
 //----------------------------------------------
 
 //draw_text(1, 80, string((global.playerIsMoving)))
-draw_text(1, 80, string((roomLayoutChanged)))
+//draw_text(1, 80, string((roomLayoutChanged)))
 
-draw_text(180, 160, string((room_get_name(room))))
+draw_text(5, 165, string((room_get_name(room))))
 //----------------------------------------------------------------
 
 
@@ -643,6 +660,52 @@ mp_grid_draw(AI_grid);
           <argument>
             <kind>1</kind>
             <string>swapMiniMapInfo *= -1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="97">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.canDrawLine *= -1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="96">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.canDrawPATH *= -1;
 </string>
           </argument>
         </arguments>

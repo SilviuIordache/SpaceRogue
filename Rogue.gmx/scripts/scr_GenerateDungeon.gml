@@ -8,16 +8,16 @@ for (i = 0; i < roomArrayW; i ++) {
         roomArray[i, j].nearUnexplored = false;
 
         // make some rooms not contain any monsters
-        hasHazardsVar = irandom(100);
-        if (hasHazardsVar < 10) roomArray[i, j].cleared = true;
-        else                    roomArray[i, j].cleared = false;
+        //hasHazardsVar = irandom(100);
+        //if (hasHazardsVar < 10) roomArray[i, j].cleared = true;
+        //else                    roomArray[i, j].cleared = false;
     }
 }
 //-------------------------------------------------
 
 
 //-----BORDER WITH -3s-------------------------------------------
-for (i = 0; i < roomArrayW; i ++) { // border the grid with 3s
+for (i = 0; i < roomArrayW; i ++) {
     roomArray[0, i].available               = -3;
     roomArray[roomArrayH - 1, i].available  = -3;
     roomArray[i, 0].available               = -3;

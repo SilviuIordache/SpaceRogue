@@ -145,6 +145,12 @@
     <instance objName="obj_AlienSP" x="192" y="32" name="inst_2078A574" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_AlienSP" x="48" y="144" name="inst_85D4FE56" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_AlienSP" x="192" y="144" name="inst_071365E0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickUp_Health" x="96" y="96" name="inst_6282A70E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickUp_Health" x="160" y="64" name="inst_D2DC72E2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickUp_Oxygen" x="16" y="80" name="inst_D655B4CF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickUp_Oxygen" x="64" y="16" name="inst_FA35B3B9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickUp_Oxygen" x="128" y="144" name="inst_4FF819BB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_pickUp_Oxygen" x="192" y="80" name="inst_7229E3BE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

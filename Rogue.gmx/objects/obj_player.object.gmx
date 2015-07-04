@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>friction = global.playerFrictionFactor;
-currentWeapon = 1; //1 = Pistol ;; 2 = Assault ;; 3 = Shotgun ;; 4 = Rocket
 playerTookDmg = false;
 </string>
           </argument>
@@ -192,22 +191,22 @@ playerTookDmg = false;
 //keyboard check for input
 if keyboard_check(ord("A")) {
     hspeed -= global.playerGainSpeed * pause;
-    global.playerMoving = global.playerMoveSpeed;
+    //global.playerMoving = global.playerMoveSpeed;
     global.playerIsMoving = true;
 }
 if keyboard_check(ord("D")) {
     hspeed += global.playerGainSpeed * pause;
-    global.playerMoving = global.playerMoveSpeed;
+    //global.playerMoving = global.playerMoveSpeed;
     global.playerIsMoving = true;
 }
 if keyboard_check(ord("W")) {
     vspeed -= global.playerGainSpeed * pause;
-    global.playerMoving = global.playerMoveSpeed;
+    //global.playerMoving = global.playerMoveSpeed;
     global.playerIsMoving = true;
 }
 if keyboard_check(ord("S")) {
     vspeed += global.playerGainSpeed * pause;
-    global.playerMoving = global.playerMoveSpeed;
+    //global.playerMoving = global.playerMoveSpeed;
     global.playerIsMoving = true;
 }
 
@@ -290,6 +289,48 @@ if( mouse_check_button(mb_right))
  }
 }
 //---------------------------------------------------------------------------
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_item">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (other)
+{
+    if (object_get_name(object_index) == "obj_pickUp_Health")
+    {
+        audio_play_sound(snd_pu_Health, 100, false);
+        playerHP += 1;
+        if (playerHP &gt; playerMaxHP)
+           playerHP = playerMaxHP;
+    }
+    
+    if (object_get_name(object_index) == "obj_pickUp_Oxygen")
+    {
+        audio_play_sound(snd_pu_Oxygen, 100, false);
+        oxygenLevel += oxygenPickUpValue
+        if (oxygenLevel &gt; 100)
+           oxygenLevel = 100;
+    }
+    instance_destroy();
+}
 
 </string>
           </argument>

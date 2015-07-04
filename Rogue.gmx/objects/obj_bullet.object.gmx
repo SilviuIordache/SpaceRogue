@@ -138,7 +138,7 @@ scr_drawLight(x, //xPos
               y, //yPos
               5,             //Radius
               5,              //Precision
-              5);             //Intensity (0 = weak -&gt;255: strong)
+              10);             //Intensity (0 = weak -&gt;255: strong)
 //----------------------------------------
 </string>
           </argument>

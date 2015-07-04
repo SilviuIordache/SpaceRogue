@@ -11,6 +11,8 @@
     <sound>sound\snd_playerHurt</sound>
     <sound>sound\snd_shotgunBlast</sound>
     <sound>sound\snd_playerMoving</sound>
+    <sound>sound\snd_pu_Health</sound>
+    <sound>sound\snd_pu_Oxygen</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="spr_player">
@@ -18,20 +20,30 @@
       <sprite>sprites\spr_playerShadow</sprite>
       <sprite>sprites\spr_heart2</sprite>
       <sprite>sprites\spr_heart</sprite>
+      <sprite>sprites\spr_heartEmpty</sprite>
       <sprite>sprites\spr_reticle</sprite>
     </sprites>
     <sprites name="spr_weapons">
-      <sprite>sprites\spr_rifleBullet</sprite>
-      <sprite>sprites\spr_rifleBullet33</sprite>
-      <sprite>sprites\spr_pistolBullet</sprite>
-      <sprite>sprites\spr_RPG_Bullet</sprite>
-      <sprite>sprites\spr_shotgunBullet</sprite>
       <sprite>sprites\spr_pistol</sprite>
       <sprite>sprites\spr_shotgun</sprite>
       <sprite>sprites\spr_RPG</sprite>
       <sprite>sprites\spr_rifle</sprite>
-      <sprite>sprites\spr_blastRadius</sprite>
-      <sprite>sprites\spr_bulletHits</sprite>
+      <sprites name="bullets">
+        <sprite>sprites\spr_rifleBullet</sprite>
+        <sprite>sprites\spr_blastRadius</sprite>
+        <sprite>sprites\spr_bulletHits</sprite>
+        <sprite>sprites\spr_RPG_Bullet</sprite>
+        <sprite>sprites\spr_shotgunBullet</sprite>
+        <sprite>sprites\spr_pistolBullet</sprite>
+        <sprite>sprites\spr_rifleBullet33</sprite>
+      </sprites>
+      <sprites name="hudWeapons">
+        <sprite>sprites\spr_shotgun_HUD</sprite>
+        <sprite>sprites\spr_pistol_HUD</sprite>
+        <sprite>sprites\spr_RPG_HUD</sprite>
+        <sprite>sprites\spr_rifle_HUD</sprite>
+        <sprite>sprites\spr_wepSelectHUD</sprite>
+      </sprites>
     </sprites>
     <sprites name="spr_environment">
       <sprite>sprites\spr_block</sprite>
@@ -55,11 +67,17 @@
       <sprite>sprites\spr_blank</sprite>
       <sprite>sprites\spr_deadText</sprite>
       <sprite>sprites\spr_pause</sprite>
+      <sprite>sprites\spr_blackHole</sprite>
     </sprites>
     <sprites name="spr_hazards">
       <sprite>sprites\spr_Goober</sprite>
       <sprite>sprites\spr_Burker</sprite>
       <sprite>sprites\spr_Alien</sprite>
+      <sprite>sprites\spr_spider</sprite>
+    </sprites>
+    <sprites name="items">
+      <sprite>sprites\spr_Health_PickUp</sprite>
+      <sprite>sprites\spr_oxygen_pickUp</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -72,10 +90,12 @@
   <scripts name="scripts">
     <scripts name="scr_Monsters">
       <script>scripts\scr_monsterSpawner.gml</script>
+      <script>scripts\scr_itemDroper.gml</script>
     </scripts>
     <scripts name="scr_GUI">
       <script>scripts\scr_drawMiniMap.gml</script>
       <script>scripts\scr_drawSquareAt.gml</script>
+      <script>scripts\scr_drawWeaponHUD.gml</script>
     </scripts>
     <scripts name="scr_DungeonGeneration">
       <script>scripts\scr_GenerateDungeon.gml</script>
@@ -108,6 +128,7 @@
       <object>objects\obj_transparent</object>
       <object>objects\obj_shaker</object>
       <object>objects\obj_lighting</object>
+      <object>objects\obj_blackHole</object>
     </objects>
     <objects name="environment">
       <object>objects\obj_block</object>
@@ -123,7 +144,6 @@
     </objects>
     <objects name="player">
       <object>objects\obj_player</object>
-      <object>objects\obj_heart</object>
     </objects>
     <objects name="weapons">
       <object>objects\obj_bulletSpark</object>
@@ -144,6 +164,11 @@
       <object>objects\obj_Goober</object>
       <object>objects\obj_AlienSP</object>
       <object>objects\obj_Alien</object>
+    </objects>
+    <objects name="items">
+      <object>objects\obj_item</object>
+      <object>objects\obj_pickUp_Health</object>
+      <object>objects\obj_pickUp_Oxygen</object>
     </objects>
   </objects>
   <rooms name="rooms">
