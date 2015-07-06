@@ -25,12 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>available      = 0; // 4 = first room, 9 = last room  1 = rooms in between, 2 = additional rooms
-doorLayout     = 0; // 1 -&gt; 15
-roomLayout     = ""; // which version of the room is loaded
-cleared        = false;
-nearUnexplored = false;
-hasHazards     = false;
+            <string>available           = 0; // 4 = first room, 9 = last room  1 = rooms in between, 2 = additional rooms
+doorLayout          = 0; // 1 -&gt; 15
+roomLayout          = ""; // which version of the room is loaded
+cleared             = false;
+nearUnexplored      = false;
+hasHazards          = false;
+modifierPosibility  = true;
 </string>
           </argument>
         </arguments>

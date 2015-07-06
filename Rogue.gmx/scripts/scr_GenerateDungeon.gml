@@ -6,6 +6,7 @@ for (i = 0; i < roomArrayW; i ++) {
         roomArray[i, j].doorLayout     = 0;
         roomArray[i, j].roomLayout     = "";
         roomArray[i, j].nearUnexplored = false;
+        roomArray[i, j].modifierPosibility = true;
 
         // make some rooms not contain any monsters
         //hasHazardsVar = irandom(100);
@@ -47,6 +48,7 @@ sign_xDistance = sign(xDistance);
 sign_yDistance = sign(yDistance);
 
 roomArray[xArrayStart, yArrayStart].cleared = true;
+roomArray[xArrayStart, yArrayStart].modifierPosibility = false;
 roomArray[xArrayStart, yArrayStart].available  = 4;  // Mark START  with available = 4
 roomArray[xArrayFinish, xArrayFinish].available  = 9;// Mark FINISH with available = 9
 //----------------------------------------------------------------------------------------

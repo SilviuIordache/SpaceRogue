@@ -26,8 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-dmg = global.shotgun_Bullet_Dmg;
-speed = global.shotgun_Bullet_Speed * pause;
+shotgun_Bullet_Dmg_dyn = global.shotgun_Bullet_Dmg;
+shotgun_Bullet_Speed_dyn = global.shotgun_Bullet_Speed;
+dmg = shotgun_Bullet_Dmg_dyn;
+speed = shotgun_Bullet_Speed_dyn * pause;
 
 </string>
           </argument>
@@ -52,6 +54,14 @@ speed = global.shotgun_Bullet_Speed * pause;
           <argument>
             <kind>1</kind>
             <string>speed = global.shotgun_Bullet_Speed * pause;
+
+dmg -= 4/100 * global.shotgun_Bullet_Dmg;
+
+
+if (dmg &lt;= 0)
+{
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>

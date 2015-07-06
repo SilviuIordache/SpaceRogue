@@ -76,14 +76,24 @@ tookDmg    = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//with (other) { instance_destroy()}
+            <string>script_execute(scr_createDamageNumber, other.dmg);
 hp -= other.dmg;
-tookDmg = 1
+
+
+
+
+tookDmg = 1;
 alarm[1] = global.monster_FlashTimer; // damaged quick visual feedback
 
 if(hp &lt; 1)
 {
     script_execute(scr_itemDroper);
+    instance_destroy();
+}
+
+with (other)
+{
+    instance_create(x, y, obj_bulletSpark);
     instance_destroy();
 }
 </string>
@@ -116,7 +126,10 @@ if(tookDmg == 1)
 }
 else
     image_index = 0
-    
+
+//---DRAW SHADOW----
+draw_sprite_ext( spr_monsterShadow, image_index, x - 1, y + 8, image_xscale, image_yscale, image_angle, image_blend, 0.2 );
+//------------------
     
 //------DEBUG FOR ENEMIES-----------------
 if (global.canDrawLine == true)

@@ -13,10 +13,13 @@
     <sound>sound\snd_playerMoving</sound>
     <sound>sound\snd_pu_Health</sound>
     <sound>sound\snd_pu_Oxygen</sound>
+    <sound>sound\snd_pu_itemModifier</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="spr_player">
       <sprite>sprites\spr_player2</sprite>
+      <sprite>sprites\spr_player_walk</sprite>
+      <sprite>sprites\spr_player_idle</sprite>
       <sprite>sprites\spr_playerShadow</sprite>
       <sprite>sprites\spr_heart2</sprite>
       <sprite>sprites\spr_heart</sprite>
@@ -73,11 +76,40 @@
       <sprite>sprites\spr_Goober</sprite>
       <sprite>sprites\spr_Burker</sprite>
       <sprite>sprites\spr_Alien</sprite>
+      <sprite>sprites\spr_DUMMY</sprite>
       <sprite>sprites\spr_spider</sprite>
+      <sprite>sprites\spr_monsterShadow</sprite>
     </sprites>
     <sprites name="items">
-      <sprite>sprites\spr_Health_PickUp</sprite>
-      <sprite>sprites\spr_oxygen_pickUp</sprite>
+      <sprite>sprites\spr_AURA</sprite>
+      <sprite>sprites\spr_AURA3</sprite>
+      <sprites name="consumable">
+        <sprite>sprites\spr_Health_PickUp</sprite>
+        <sprite>sprites\spr_oxygen_pickUp</sprite>
+      </sprites>
+      <sprites name="modifiers">
+        <sprite>sprites\spr_item_1</sprite>
+        <sprite>sprites\spr_item_2</sprite>
+        <sprite>sprites\spr_item_3</sprite>
+        <sprite>sprites\spr_item_4</sprite>
+        <sprite>sprites\spr_item_5</sprite>
+        <sprite>sprites\spr_item_6</sprite>
+        <sprite>sprites\spr_item_7</sprite>
+        <sprite>sprites\spr_item_8</sprite>
+        <sprite>sprites\spr_item_9</sprite>
+        <sprite>sprites\spr_item_10</sprite>
+        <sprite>sprites\spr_item_11</sprite>
+        <sprite>sprites\spr_item_12</sprite>
+        <sprite>sprites\spr_item_13</sprite>
+        <sprite>sprites\spr_item_14</sprite>
+        <sprite>sprites\spr_item_15</sprite>
+        <sprite>sprites\spr_item_16</sprite>
+        <sprite>sprites\spr_item_17</sprite>
+        <sprite>sprites\spr_item_18</sprite>
+        <sprite>sprites\spr_item_19</sprite>
+        <sprite>sprites\spr_item_20</sprite>
+        <sprite>sprites\spr_item_21</sprite>
+      </sprites>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -91,6 +123,7 @@
     <scripts name="scr_Monsters">
       <script>scripts\scr_monsterSpawner.gml</script>
       <script>scripts\scr_itemDroper.gml</script>
+      <script>scripts\scr_createDamageNumber.gml</script>
     </scripts>
     <scripts name="scr_GUI">
       <script>scripts\scr_drawMiniMap.gml</script>
@@ -119,6 +152,7 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_fpsFont</font>
+    <font>fonts\fnt_damage</font>
   </fonts>
   <objects name="objects">
     <objects name="other">
@@ -164,11 +198,15 @@
       <object>objects\obj_Goober</object>
       <object>objects\obj_AlienSP</object>
       <object>objects\obj_Alien</object>
+      <object>objects\obj_DUMMY</object>
+      <object>objects\obj_damage</object>
     </objects>
     <objects name="items">
       <object>objects\obj_item</object>
       <object>objects\obj_pickUp_Health</object>
       <object>objects\obj_pickUp_Oxygen</object>
+      <object>objects\obj_pickUp_Modifier</object>
+      <object>objects\obj_item_Text</object>
     </objects>
   </objects>
   <rooms name="rooms">

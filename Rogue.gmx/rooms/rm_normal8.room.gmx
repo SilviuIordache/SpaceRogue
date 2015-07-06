@@ -123,8 +123,8 @@
     <instance objName="obj_block" x="176" y="112" name="inst_FB81BCA3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_block" x="176" y="64" name="inst_A49BB796" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall_Dest" x="176" y="80" name="inst_AFFB9D87" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_GooberSP" x="144" y="48" name="inst_07D6E599" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_GooberSP" x="160" y="112" name="inst_00AA7253" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_GooberSP" x="152" y="56" name="inst_07D6E599" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_GooberSP" x="168" y="120" name="inst_00AA7253" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_AlienSP" x="152" y="104" name="inst_5CA0424E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_AlienSP" x="168" y="72" name="inst_392E18C0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_AlienSP" x="40" y="120" name="inst_92393A8E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

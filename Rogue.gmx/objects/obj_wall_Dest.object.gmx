@@ -52,7 +52,7 @@ with( instance_create(x, y - 8, obj_blockDestTop))
             <kind>1</kind>
             <string>with (other) { instance_destroy()}
 hp -= other.dmg;
-
+script_execute(scr_createDamageNumber, other.dmg);
 if(hp &lt; 1)
 {
     roomLayoutChanged = true;

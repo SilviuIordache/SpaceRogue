@@ -316,6 +316,7 @@ if( mouse_check_button(mb_right))
 {
     if (object_get_name(object_index) == "obj_pickUp_Health")
     {
+       
         audio_play_sound(snd_pu_Health, 100, false);
         playerHP += 1;
         if (playerHP &gt; playerMaxHP)
@@ -328,6 +329,10 @@ if( mouse_check_button(mb_right))
         oxygenLevel += oxygenPickUpValue
         if (oxygenLevel &gt; 100)
            oxygenLevel = 100;
+    }
+    if (object_get_name(object_index) == "obj_pickUp_Modifier")
+    {
+        audio_play_sound(snd_pu_itemModifier, 100, false);
     }
     instance_destroy();
 }
