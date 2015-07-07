@@ -24,6 +24,8 @@ for (i = 0; i < roomArrayW; i++)
         {
             script_execute(scr_drawSquareAt, i, j, c_green)
         }    
+        //if (roomArray[i,j].available      == 9)
+        //    script_execute(scr_drawSquareAt, i, j, c_red)
     }
 }
 
@@ -95,5 +97,5 @@ for (i = 0; i < roomArrayW; i++)
 
 script_execute(scr_drawSquareAt, xArrayFinish, xArrayFinish, c_red)  //FINISH
 script_execute(scr_drawSquareAt, xMapPlayer, yMapPlayer, c_blue)  //Player Location
-*/
+
 //-------------------------------------------------------------------------------

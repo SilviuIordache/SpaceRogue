@@ -52,7 +52,6 @@ randomize(); // randomize with different seed each time
 //------SURFACE---------------------------------------
 globalvar lightON;
           lightON = true;
-//global.light = surface_create(room_width,room_height);
 //----------------------------------------------------
 
 
@@ -61,7 +60,7 @@ globalvar lightON;
 globalvar pauseVariable;
           pauseVariable = 1;
 globalvar pause;
-          pause = 1;
+          pause         = 1;
 //-----------------------
 
 
@@ -81,10 +80,21 @@ globalvar nextDirection; // boolean that alternates filling 1s between the x and
           nextDirection = power(-1, irandom(2));
 globalvar xDistance, yDistance; // hor and ver diff between start and finish rooms
 globalvar sign_xDistance, sign_yDistance; // signs(+ or -) of the hor and ver diff
+
+
+globalvar dungeonTier;
+          dungeonTier = 1; // 1 = easy, 2 = medium, 3 = hard
+          
+globalvar newFloorStarted;
+          newFloorStarted = false
+
+          
 //-------------------------------------------------------------------------------------------------
 
 
 //---MINIMAP VARIABLES----------------------------------------------------------
+globalvar canDrawMiniMap;
+          canDrawMiniMap = true;
 globalvar swapMiniMapInfo; //DEBUG variable for switching between minimap values
           swapMiniMapInfo = -1;
 globalvar arrayCellSize;
@@ -95,9 +105,6 @@ globalvar xMapPlayer, yMapPlayer; //current player position on the minimap
 
 
 //--------2D ROOM ARRAY-----------------------------------------------------
-//roomArrayH = room_width div arrayCellSize;
-//roomArrayH = room_height div arrayCellSize; 
-
 globalvar nrOfRooms;
           nrOfRooms = 9;
 globalvar roomArrayW;
@@ -116,25 +123,28 @@ for (i = 0; i &lt; roomArrayW; i++)
 script_execute(scr_GenerateDungeon);
 //--------------------------------------------------------------------------
 
+
+
 //--------------------------ITEMS MODIFIERS----------------------------------
 globalvar modifierItemNumber;
           modifierItemNumber = 20;
           
 global.hpChance     = 8
-global.oxyChance    = 15;
+global.oxyChance    = 16;
 
-global.modifierDropChance = 10;
+global.modifierDropChance = 25;
 
 global.itemDescription = "";
 
 //------CUSTOM ITEMS VARIABLES-----------------
 global.canRegenHealthEachRoom = false;
 //---------------------------------------------
-
 //---------------------------------------------------------------------------
 
 
+
 //--------------------------PLAYER-------------------------------------------
+
 //-------MOVEMENT SPEED------------------
 global.playerMoveSpeed = 0;
 global.playerFrictionFactor = 0.1;
@@ -142,6 +152,7 @@ global.playerGainSpeed = 0.2;
 global.playerTopSpeed  = 1.2;
 global.playerIsMoving = false;
 //---------------------------------------
+
 
 //-------HEALTH POINTS-------------------
 globalvar playerMaxHP_base;
@@ -155,6 +166,7 @@ globalvar playerCanTakeDmg;
 globalvar playerDmgCd;
           playerDmgCd      = 60;
 //---------------------------------------
+
 
 //----- WEAPONS--------------------------
 globalvar currentWeapon;
@@ -170,7 +182,7 @@ global.rifle_Bullet_cd          = 6
 global.canShootRifle            = true
 
 global.shotgun_Bullet_Speed     = 3;
-global.shotgun_Bullet_Dmg       = 1.2;
+global.shotgun_Bullet_Dmg       = 1.5;
 global.shotgun_Bullet_cd        = 60
 global.canShootShotgun          = true
 
@@ -186,7 +198,6 @@ globalvar lastMouseX;
 globalvar lastMouseY;
           lastMouseY = 0;
 //-------------------------------------------------------
-
 //---------------------------------------------------------------------------
 
 
@@ -202,18 +213,15 @@ globalvar oxygenCanDmg;
           oxygenCanDmg       = true;
 globalvar oxygenPickUpValue;
           oxygenPickUpValue  = 35;
-
 //---------------------------------------------------------------------------
 
 
 
 //----HAZARDS----------------------------------------------------------------
-
 //Grid for Pathfinding AI
 globalvar AI_grid;
           AI_grid = mp_grid_create(0, 0, 15, 11, 16, 16);
           
-
 //MONSTERS STATS--------------------------
 global.monster_FlashTimer       = 2;
 
@@ -232,16 +240,13 @@ globalvar playerHeadStart;
 globalvar alienStartDelay;        
           alienStartDelay       = 10;
 //---------------------------------------
-
 //---------------------------------------------------------------------------
 
 
 //--------DEBUG--------------------------------------------------------------
-
-global.canDrawPATH = true;
-global.canDrawLine = true;
+global.canDrawPATH = false;
+global.canDrawLine = false;
 canDrawFPS = true;
-
 drawAvailable  = false
 drawDoorLayout = false
 drawRoomLayout = false
@@ -249,6 +254,32 @@ drawCleared    = false
 drawUnexplored = false
 drawNothing    = true
 //---------------------------------------------------------------------------
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+instance_create(112, 80, obj_dungeonInfo);
+global.newFloorStarted = false;
+
 </string>
           </argument>
         </arguments>
@@ -363,36 +394,58 @@ drawNothing    = true
 }
 
 
-//CHECK IF PLAYER IS ALIVE
+//----CHECK IF PLAYER IS ALIVE--------------
 if (playerHP &lt; 1)
 {
     with(obj_player) instance_destroy()
 }
+//------------------------------------------
 
-//MARK ROOM CLEARED
+//----MARK ROOM CLEARED-------------------------------------------------------
 if(instance_number(obj_hazard) &lt; 1)
 {
-    with (instance_nearest(x, y, obj_LockedDoor)) instance_destroy();
-    with (instance_nearest(x, y, obj_LockedDoorTop)) instance_destroy();  
+    with (instance_nearest(x, y, obj_LockedDoor)) 
+         instance_destroy();
+    with (instance_nearest(x, y, obj_LockedDoorTop)) 
+         instance_destroy();  
     global.roomArray[global.xMapPlayer,global.yMapPlayer].cleared = true; 
+    
+    //-----CREATE ITEM MODIFIER IF POSSIBLE--------------------------------------
     if (global.roomArray[xMapPlayer, yMapPlayer].modifierPosibility == true) 
     {
-        if (global.modifierDropChance &lt; irandom(100) )
+        if (global.modifierDropChance &gt;= irandom(100) )
         {
             instance_create(120, 88, obj_pickUp_Modifier)
+            audio_play_sound(snd_pu_itemModifier_Created, 100, false);
             roomArray[xMapPlayer, yMapPlayer].modifierPosibility = false;
         }
         else
             roomArray[xMapPlayer, yMapPlayer].modifierPosibility = false;
+        
+
     }
+    //-------CREATE EXIT PORTAL IN SPECIFIC ROOM----------------------
+    if (roomArray[xMapPlayer, yMapPlayer].createExitHere == true &amp;&amp;
+        roomArray[xMapPlayer, yMapPlayer].available == 9)
+    {
+        instance_create(112, 80, obj_EXIT);
+        roomArray[xMapPlayer, yMapPlayer].createExitHere = false;
+    }
+    //----------------------------------------------------------------
+    //---------------------------------------------------------------------------
 }
+//----------------------------------------------------------------------------
+
+
+
+//--RESET OXYGEN TO FULL WHEN ROOM IS CLEARED-------------
 if (roomArray[xMapPlayer, yMapPlayer].cleared == true)
 {
     oxygenLevel = oxygenLevelInitial;
 }
+//--------------------------------------------------------
 
-//PLAY PLAYER WALK SOUND
-//if (global.playerIsMoving == true)
+
 
 //------------DEBUG VARIABLES------------------
 if(keyboard_check_pressed(vk_f1))
@@ -544,7 +597,8 @@ draw_sprite_ext(spr_reticle, image_index, mouse_x, mouse_y, 1, 1, 0, c_white, 1)
 if(asset_get_index(room_get_name(room)) != rm_MENU)
 {
     //DRAW MINIMAP
-    script_execute(scr_drawMiniMap);
+    if (canDrawMiniMap == true)
+       script_execute(scr_drawMiniMap);
     
     //DRAW HEALTH POINTS
     for(i = 0; i &lt; playerHP; i++)
@@ -586,10 +640,14 @@ draw_set_font(fnt_fpsFont);
 draw_set_color(c_white)
 draw_text(1, 50, string(ceil(fpsDRAW)))
 //----------------------------------------------
+/*
+draw_text(1, 80, string((xMapPlayer)))
+draw_text(16, 80, string((yMapPlayer)))
 
-//draw_text(1, 80, string((global.playerIsMoving)))
+draw_text(1, 96, string((xArrayFinish)))
+draw_text(16, 96, string((yArrayFinish)))
 //draw_text(1, 80, string((roomLayoutChanged)))
-
+*/
 draw_text(5, 165, string((room_get_name(room))))
 //----------------------------------------------------------------
 
@@ -762,6 +820,10 @@ mp_grid_draw(AI_grid);
 script_execute(scr_placeDoors);
 script_execute(scr_markNearUnexplored, xMapPlayer, yMapPlayer)
 script_execute(scr_resetPlayer);
+
+global.dungeonTier = 1;
+global.newFloorStarted = true;
+obj_system.alarm[3]    = 5;
 </string>
           </argument>
         </arguments>
@@ -789,6 +851,29 @@ script_execute(scr_resetPlayer);
 pause = (1 + pauseVariable) / 2
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>canDrawMiniMap *= -1;
 </string>
           </argument>
         </arguments>

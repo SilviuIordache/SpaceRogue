@@ -90,15 +90,10 @@ if (itemTextAlpha == 0 &amp;&amp; decr == true)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-draw_set_alpha(itemTextAlpha)
-//draw_set_alpha(0.5)
+            <string>draw_set_alpha(itemTextAlpha)
 draw_rectangle_colour(40, 130, 190, 145, c_white, c_white, c_white, c_white, false); // minimap white bck
-//draw_set_halign(fa_center);
-//draw_set_font_(fnt_itemDescription);
 draw_set_color(c_black);
 draw_set_halign(fa_center);
-//draw_set_alpha(0.9)
 draw_text(x, y + 52, global.itemDescription);
 draw_set_halign(fa_left);
 draw_set_alpha(1)

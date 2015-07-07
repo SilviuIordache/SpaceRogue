@@ -32,6 +32,7 @@ cleared             = false;
 nearUnexplored      = false;
 hasHazards          = false;
 modifierPosibility  = true;
+createExitHere      = false;
 </string>
           </argument>
         </arguments>

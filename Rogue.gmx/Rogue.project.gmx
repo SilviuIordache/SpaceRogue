@@ -14,6 +14,7 @@
     <sound>sound\snd_pu_Health</sound>
     <sound>sound\snd_pu_Oxygen</sound>
     <sound>sound\snd_pu_itemModifier</sound>
+    <sound>sound\snd_pu_itemModifier_Created</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="spr_player">
@@ -64,6 +65,7 @@
       <sprite>sprites\spr_oxygen_tube</sprite>
       <sprite>sprites\spr_oxygen_amount</sprite>
       <sprite>sprites\spr_bulletBlock</sprite>
+      <sprite>sprites\spr_exit</sprite>
     </sprites>
     <sprites name="spr_other">
       <sprite>sprites\spr_StartButton</sprite>
@@ -82,6 +84,7 @@
     </sprites>
     <sprites name="items">
       <sprite>sprites\spr_AURA</sprite>
+      <sprite>sprites\spr_AURA_b</sprite>
       <sprite>sprites\spr_AURA3</sprite>
       <sprites name="consumable">
         <sprite>sprites\spr_Health_PickUp</sprite>
@@ -140,10 +143,11 @@
       <script>scripts\scr_placeDoors.gml</script>
       <script>scripts\scr_buildDoors.gml</script>
       <script>scripts\scr_markNearUnexplored.gml</script>
+      <script>scripts\scr_generateNewPoints.gml</script>
     </scripts>
     <scripts name="scr_player">
-      <script>scripts\scr_playerKnockBack.gml</script>
       <script>scripts\scr_resetPlayer.gml</script>
+      <script>scripts\scr_playerKnockBack.gml</script>
       <script>scripts\scr_playerEnemyKnock.gml</script>
     </scripts>
     <scripts name="scr_Render">
@@ -175,6 +179,8 @@
       <object>objects\obj_oxygenTube</object>
       <object>objects\obj_bulletSponge</object>
       <object>objects\obj_wall_Dest</object>
+      <object>objects\obj_EXIT</object>
+      <object>objects\obj_dungeonInfo</object>
     </objects>
     <objects name="player">
       <object>objects\obj_player</object>
