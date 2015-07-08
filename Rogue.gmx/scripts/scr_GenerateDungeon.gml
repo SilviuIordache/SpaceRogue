@@ -9,7 +9,7 @@ for (i = 0; i < roomArrayW; i ++) {
         roomArray[i, j].nearUnexplored     = false;
         roomArray[i, j].modifierPosibility = true;
         roomArray[i, j].createExitHere     = false;
-        
+        roomArray[i, j].cleared            = false;
 
         // make some rooms not contain any monsters
         //hasHazardsVar = irandom(100);

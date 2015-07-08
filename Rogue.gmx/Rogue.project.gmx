@@ -147,6 +147,7 @@
     </scripts>
     <scripts name="scr_player">
       <script>scripts\scr_resetPlayer.gml</script>
+      <script>scripts\scr_resetPlayer_EXIT.gml</script>
       <script>scripts\scr_playerKnockBack.gml</script>
       <script>scripts\scr_playerEnemyKnock.gml</script>
     </scripts>

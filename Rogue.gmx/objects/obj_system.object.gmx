@@ -244,8 +244,8 @@ globalvar alienStartDelay;
 
 
 //--------DEBUG--------------------------------------------------------------
-global.canDrawPATH = false;
-global.canDrawLine = false;
+global.canDrawPATH = true;
+global.canDrawLine = true;
 canDrawFPS = true;
 drawAvailable  = false
 drawDoorLayout = false
@@ -421,17 +421,17 @@ if(instance_number(obj_hazard) &lt; 1)
         }
         else
             roomArray[xMapPlayer, yMapPlayer].modifierPosibility = false;
-        
+        //-------CREATE EXIT PORTAL IN SPECIFIC ROOM----------------------
+        if (roomArray[xMapPlayer, yMapPlayer].createExitHere == true &amp;&amp;
+            roomArray[xMapPlayer, yMapPlayer].available == 9)
+        {
+            instance_create(112, 80, obj_EXIT);
+            roomArray[xMapPlayer, yMapPlayer].createExitHere = false;
+        }
+        //----------------------------------------------------------------   
 
     }
-    //-------CREATE EXIT PORTAL IN SPECIFIC ROOM----------------------
-    if (roomArray[xMapPlayer, yMapPlayer].createExitHere == true &amp;&amp;
-        roomArray[xMapPlayer, yMapPlayer].available == 9)
-    {
-        instance_create(112, 80, obj_EXIT);
-        roomArray[xMapPlayer, yMapPlayer].createExitHere = false;
-    }
-    //----------------------------------------------------------------
+    
     //---------------------------------------------------------------------------
 }
 //----------------------------------------------------------------------------

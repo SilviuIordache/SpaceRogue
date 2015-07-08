@@ -78,7 +78,7 @@
 script_execute(scr_GenerateDungeon);
 script_execute(scr_placeDoors);
 script_execute(scr_markNearUnexplored, xMapPlayer, yMapPlayer)
-//script_execute(scr_resetPlayer);
+script_execute(scr_resetPlayer_EXIT);
 
 global.newFloorStarted = true;
 obj_system.alarm[3]    = 5;
