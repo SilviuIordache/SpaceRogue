@@ -191,22 +191,18 @@ playerTookDmg = false;
 //keyboard check for input
 if keyboard_check(ord("A")) {
     hspeed -= global.playerGainSpeed * pause;
-    //global.playerMoving = global.playerMoveSpeed;
     global.playerIsMoving = true;
 }
 if keyboard_check(ord("D")) {
     hspeed += global.playerGainSpeed * pause;
-    //global.playerMoving = global.playerMoveSpeed;
     global.playerIsMoving = true;
 }
 if keyboard_check(ord("W")) {
     vspeed -= global.playerGainSpeed * pause;
-    //global.playerMoving = global.playerMoveSpeed;
     global.playerIsMoving = true;
 }
 if keyboard_check(ord("S")) {
     vspeed += global.playerGainSpeed * pause;
-    //global.playerMoving = global.playerMoveSpeed;
     global.playerIsMoving = true;
 }
 
@@ -259,6 +255,7 @@ if(currentWeapon == 3 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.c
 
     alarm[3] = global.shotgun_Bullet_cd;
 }
+/*
 if(currentWeapon == 4 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.canShootRPG)
 {
     script_execute(scr_playerKnockBack, 0.7);
@@ -266,7 +263,7 @@ if(currentWeapon == 4 &amp;&amp; mouse_check_button(mb_left) &amp;&amp; global.c
     global.canShootRPG = false;
     instance_create(obj_player.x + 11, obj_player.y + 10, obj_RPG_Bullet);
     alarm[4] = global.RPG_Bullet_cd;
-}
+}*/
 //---------------------------------------------
 
 //-----Switching weapons-----------------------
@@ -276,8 +273,8 @@ if keyboard_check_pressed(ord("2")) // RIFLE
     currentWeapon = 2;
 if keyboard_check_pressed(ord("3")) // SHOTGUN
     currentWeapon = 3;
-if keyboard_check_pressed(ord("4")) // RPG
-    currentWeapon = 4;
+//if keyboard_check_pressed(ord("4")) // RPG
+//    currentWeapon = 4;
 //--------------------------------------------
 }
 //-------DEBUG KILL ALL-------------------------------------------------

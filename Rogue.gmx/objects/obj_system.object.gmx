@@ -132,7 +132,7 @@ globalvar modifierItemNumber;
 global.hpChance     = 8
 global.oxyChance    = 16;
 
-global.modifierDropChance = 25;
+global.modifierDropChance = 45;
 
 global.itemDescription = "";
 
@@ -208,7 +208,7 @@ globalvar oxygenLevel;
 globalvar oxygenLevelInitial;
           oxygenLevelInitial = oxygenLevel;          
 globalvar oxygenRate;
-          oxygenRate         = 0.1;
+          oxygenRate         = 0.08;
 globalvar oxygenCanDmg;
           oxygenCanDmg       = true;
 globalvar oxygenPickUpValue;
