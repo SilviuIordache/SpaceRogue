@@ -132,7 +132,7 @@ draw_sprite_ext( spr_monsterShadow, image_index, x - 1, y + 8, image_xscale, ima
 //------------------
     
 //------DEBUG FOR ENEMIES-----------------
-if (global.canDrawLine == true)
+/*if (global.canDrawLine == true)
 {
     draw_set_color(c_white)
     if (instance_exists(obj_player))

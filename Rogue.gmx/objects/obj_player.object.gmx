@@ -278,7 +278,7 @@ if keyboard_check_pressed(ord("3")) // SHOTGUN
 //--------------------------------------------
 }
 //-------DEBUG KILL ALL-------------------------------------------------
-
+/*
 if( mouse_check_button(mb_right))
 {
  with(obj_monster)

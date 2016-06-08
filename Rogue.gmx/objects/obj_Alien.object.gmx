@@ -172,6 +172,7 @@ if (!place_meeting(x + lengthdir_x(1, i), y + lengthdir_y(1, i), obj_block))
             <string>//draw_self();
 event_inherited();
 //---Debug draw path-----------------
+/*
 if (global.canDrawPATH == true)
 {
     draw_set_color(c_red);
